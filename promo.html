@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promos &amp; Special Offers — NES_inn</title>
+  <meta name="description"
+    content="Stay packages, exclusive discounts, and special events at NES_inn. Book directly with us to enjoy every offer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --color-cream: #fcfcf8; --color-sand: #ebe4d6; --color-navy: #0b2a45; --color-deep: #071c30; --color-gold: #b8955a; --color-gilt: #edcf62; --color-preload: #d31c5e; --color-deep-preload: #d31c5e;
+  }
+</style>
+  <style>
+    body {
+      font-family: "Inter", system-ui, sans-serif
+    }
+
+    /* Navbar: transparent over the banner, solid cream after scrolling */
+    #nav {
+      border-bottom: 1px solid transparent;
+      transition: background-color .4s, color .4s, border-color .4s
+    }
+
+    #nav.sc {
+      background: #fcfcf8;
+      color: #0b2a45;
+      border-color: rgba(11, 42, 69, .1)
+    }
+
+    body.mo #nav,
+    body.mo #nav.sc {
+      background: transparent;
+      color: #fff;
+      border-color: transparent
+    }
+
+    .bl {
+      transition: transform .5s cubic-bezier(.7, 0, .2, 1), opacity .3s;
+      transform-origin: center
+    }
+
+    .menu-open .b1 {
+      transform: translateY(6px) rotate(45deg)
+    }
+
+    .menu-open .b2 {
+      opacity: 0
+    }
+
+    .menu-open .b3 {
+      transform: translateY(-6px) rotate(-45deg)
+    }
+
+    .ph {
+      background: #1d4a6b
+    }
+
+    dialog::backdrop {
+      background: rgba(7, 28, 48, .72);
+      backdrop-filter: blur(4px)
+    }
+
+    :focus-visible {
+      outline: 2px solid #b8955a;
+      outline-offset: 3px
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        transition-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-navy antialiased selection:bg-gold selection:text-white">
+
+  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-preload text-white"
+    aria-hidden="true">
+    <div class="text-center">
+      <p class="font-serif text-6xl tracking-wide">NES_inn</p>
+      <div id="pl-line" class="mx-auto mt-5 h-px w-40 origin-left bg-navy"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 text-white">
+    <div class="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
+      <a href="index.html" class="logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)]"
+        aria-label="NES_inn home"><img src="/img/nesinn_logo.jpeg" alt="" width="50" height="50"
+          onerror="this.remove()">NES_inn</a>
+      <ul class="hidden items-center gap-10 text-[15px] font-medium tracking-wide lg:flex" aria-label="Main navigation">
+        <li><a class="transition hover:text-preload" href="/index.html">Home</a></li>
+        <li><a class="transition hover:text-preload" href="/rooms.html">Rooms</a></li>
+        <li><a class="transition hover:text-preload" href="/facilities.html">Facilities</a></li>
+        <li><a class="jump border-b border-current pb-1" href="/promo.html" aria-current="page">Promo</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#gallery">Gallery</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#reviews">Reviews</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#location">Location</a></li>
+      </ul>
+      <a class="hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy lg:inline-block"
+        href="index.html#register">Contact Us</a>
+      <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
+          class="relative block h-[14px] w-6"><span
+            class="bl b1 absolute left-0 top-0 h-[1.5px] w-full bg-current"></span><span
+            class="bl b2 absolute left-0 top-[6px] h-[1.5px] w-full bg-current"></span><span
+            class="bl b3 absolute left-0 top-3 h-[1.5px] w-full bg-current"></span></span></button>
+    </div>
+  </header>
+
+  <div id="mmenu"
+    class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
+    aria-hidden="true">
+    <ul class="flex flex-col">
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="/index.html">Home</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl"
+          href="/rooms.html">Rooms</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="/facilities.html">Facilities</a>
+      </li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl text-preload" href="/promo.html">Promo</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#gallery">Gallery</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#location">Location</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#register">Contact
+          Us</a></li>
+    </ul>
+    <div class="mf text-sm text-white/65">
+      <div class="mb-4 flex gap-5"><i data-lucide="message-circle" class="h-5 w-5"></i><i data-lucide="instagram"
+          class="h-5 w-5"></i><i data-lucide="navigation" class="h-5 w-5"></i></div>
+      <p>hello@nesinn.com · +62 111 222 333</p>
+      <p class="mt-1">Raha, Sulawesi Tenggara, Indonesia</p>
+    </div>
+  </div>
+
+  <main>
+    <!-- BANNER -->
+    <section id="top" class="relative flex h-[62svh] min-h-[440px] items-end overflow-hidden bg-deep text-white">
+      <img id="pm-bg" data-img="6" alt="" class="absolute inset-0 h-full w-full object-cover">
+      <div class="absolute inset-0 bg-[#0b2a45]/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071c30]/70"></div>
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-14 md:pb-20">
+        <nav aria-label="Breadcrumb" class="hi text-xs uppercase tracking-[.3em] text-white/75"><a href="index.html"
+            class="transition hover:text-gilt">Home</a><span class="mx-3">/</span><span class="text-gilt">Promo</span>
+        </nav>
+        <h1 id="pm-h1" class="mt-5 font-serif text-5xl font-medium md:text-8xl">Promos &amp; Special Offers</h1>
+        <p class="hi mt-5 max-w-xl text-base font-light leading-8 text-white/90 md:text-lg">Stay packages, exclusive
+          discounts, and seasonal events, all in one place. Book directly with us to enjoy every offer.</p>
+      </div>
+    </section>
+
+    <!-- OFFER LIST -->
+    <section class="bg-cream px-6 py-16 md:px-12 md:py-24">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="sr-only">Current offers</h2>
+        <div class="flex flex-col gap-6 border-b border-navy/15 pb-6 md:flex-row md:items-center md:justify-between">
+          <div id="pm-filters" role="group" aria-label="Filter offers" class="flex flex-wrap gap-3 text-sm"></div>
+          <p id="pm-count" class="text-sm text-navy/60" aria-live="polite"></p>
+        </div>
+        <ul id="pm-list" class="mt-10 space-y-8"></ul>
+        <div id="pm-empty" class="hidden py-24 text-center">
+          <i data-lucide="tag" class="mx-auto h-10 w-10 text-gold" stroke-width="1.2"></i>
+          <p class="mt-4 font-serif text-3xl">No active offers here right now</p>
+          <p class="mt-2 text-sm text-navy/70">Please check another category or come back soon for new promotions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-preload/10 px-6 py-20 text-center md:py-28">
+      <div class="mx-auto max-w-2xl">
+        <h2 class="sp font-serif text-4xl text-preload md:text-5xl">Looking for something special?</h2>
+        <p class="mt-4 text-sm leading-relaxed text-navy/70 md:text-base">Tell us about your plans and our team will
+          help you find the best offer for your stay.</p>
+        <a href="index.html#register"
+          class="mt-8 inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-sm text-white transition hover:bg-navy">Contact
+          Us <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gradient-to-b from-preload/90 to-black/90 px-6 pb-8 pt-20 text-white">
+    <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.5fr_1fr]">
+      <div>
+        <p class="font-serif text-4xl">NES_inn HOTEL</p>
+        <p class="mt-4 max-w-sm leading-8 text-white/90">Beachfront living with understated coastal luxury, crafted for
+          slow mornings and elevated resort stays.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 text-sm">
+        <ul class="space-y-3">
+          <li class="text-white/50">Explore</li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Instagram</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Facebook</a></li>
+          <li><a href="https://www.waze.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Waze</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Linkedin</a></li>
+        </ul>
+        <ul class="space-y-3">
+          <li class="text-white/50">Contact</li>
+          <li><a href="tel:+62111222333" class="transition hover:text-preload">+62 111 222 333</a></li>
+          <li><a href="mailto:hello@NES_inn.com" class="transition hover:text-preload">hello@NES_inn.com</a></li>
+          <li class="text-white/60">Raha, Sulawesi Tenggara, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="mx-auto mt-14 flex max-w-6xl flex-col gap-3 border-t border-white/10 pt-6 text-xs tracking-wide text-white/55 md:flex-row md:justify-between">
+      <p>Budget with nice athmosphere</p>
+      <p>© 2026 NES_inn HOTEL. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button id="totop" type="button"
+    class="pointer-events-none fixed bottom-6 right-6 z-30 flex flex-col items-center gap-2 bg-white/90 px-3 py-3 text-navy opacity-0 shadow-lg backdrop-blur"
+    aria-label="Back to top"><i data-lucide="chevron-up" class="h-4 w-4"></i><span
+      class="block h-10 w-px bg-navy/20"><span id="totop-p" class="block w-px origin-top bg-navy"
+        style="height:100%;transform:scaleY(0)"></span></span></button>
+
+  <!-- Promo detail modal -->
+  <dialog id="pm-dlg" aria-labelledby="pm-dt"
+    class="m-auto max-h-[90svh] w-[min(92vw,860px)] overflow-hidden bg-cream p-0 text-navy">
+    <button type="button" data-close aria-label="Close details"
+      class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-navy shadow transition hover:bg-preload hover:text-white"><i
+        data-lucide="x" class="h-5 w-5"></i></button>
+    <div id="pm-dc" data-lenis-prevent class="max-h-[90svh] overflow-y-auto"></div>
+  </dialog>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const P = { 1: '1540541338287-41700207dee6', 2: '1520250497591-112f2f40a3f4', 3: '1544161515-4ab6ce6db874', 4: '1534438327276-14e5300c3a48', 5: '1573843981267-be1999ff37cd', 6: '1507525428034-b723cf961d3e', 7: '1414235077428-338989a2e8c0', 8: '1551882547-ff40c63fe5fa', 9: '1537996194471-e657df975ab4', 10: '1602002418082-a4443e081dd1', 11: '1582719508461-905c673771fd', 12: '1566073771259-6a8506099945', 13: '1571896349842-33c89424de2d', 14: '1631049307264-da0ec9d70304', 15: '1584622650111-993a426fbf0a', 16: '1570077188670-e3a8d69ac5ff', 17: '1590490360182-c33d57733427' };
+    const img = (n, w = 1200) => `https://images.unsplash.com/photo-${P[n]}?auto=format&fit=crop&w=${w}&q=80`;
+    const BOOK = 'index.html#register';
+
+    /* ---------- Data ---------- */
+    /* CONTOH promo — ganti dengan penawaran asli hotel. `end` (YYYY-MM-DD) menentukan kapan promo otomatis disembunyikan. */
+    const TYPES = { package: ['Stay Package', 'bed-double'], discount: ['Discount', 'badge-percent'], event: ['Special Event', 'party-popper'] };
+    const CTA = { package: 'Book This Package', discount: 'Use This Offer', event: 'Reserve a Spot' };
+    const TERMS = {
+      package: ['Price is per package and includes taxes and service charge.', 'Subject to room availability at the time of booking.', 'The stay must be completed within the validity period.', 'Cannot be combined with other promo codes unless stated.'],
+      discount: ['Mention the code in the registration form when you book.', 'Valid for direct bookings with the hotel only.', 'One code per booking. Cannot be combined with other offers unless stated.', 'Subject to room availability.'],
+      event: ['Seats are limited and a reservation is required.', 'Price is per person and includes taxes and service charge.', 'In-house guests receive priority seating.', 'Reservations can be changed up to 48 hours before the event.']
+    };
+    const PROMOS = [
+      { t: 'package', id: 'romantic-escape', img: 14, badge: 'Best Seller', title: 'Romantic Escape', sub: '2 Nights · Ocean View Suite', desc: 'Two nights of slow mornings and sea breezes, finished with a candlelit dinner by the beach.', list: ['Daily breakfast for two', 'Candlelit beachfront dinner', '60-minute couples spa treatment', 'Complimentary late check-out until 2:00 PM'], price: 'Rp 3.450.000', old: 'Rp 4.200.000', end: '2027-03-31', until: 'Valid until 31 Mar 2027' },
+      { t: 'package', id: 'family-getaway', img: 13, badge: 'Family', title: 'Family Fun Getaway', sub: '3 Nights · Family Room', desc: 'Space, fun, and easy mornings for the whole family, with kids’ activities and a relaxed late check-out.', list: ['Breakfast for up to 4 guests', 'Play Garden and kids activity access', 'Complimentary late check-out', 'Welcome snack for the little ones'], price: 'Rp 5.900.000', old: 'Rp 7.100.000', end: '2027-06-30', until: 'Valid until 30 Jun 2027' },
+      { t: 'package', id: 'weekday-retreat', img: 3, badge: 'Mon – Thu', title: 'Weekday Retreat', sub: '2 Nights · Private Garden Villa', desc: 'A quiet midweek reset in a private villa wrapped in tropical greenery.', list: ['Daily breakfast and afternoon tea', 'Sunset cocktail by the pool', 'Free airport transfer'], price: 'Rp 2.750.000', old: 'Rp 3.300.000', end: '2027-03-31', until: 'Valid until 31 Mar 2027' },
+      { t: 'package', id: 'business-essentials', img: 8, badge: 'Business', title: 'Business Essentials', sub: '3 Nights · Deluxe King', desc: 'Everything a working trip needs: a calm room, a good breakfast, and a late check-out on your last day.', list: ['Daily breakfast', 'Fast Wi-Fi and a quiet workspace', 'Complimentary laundry (3 pieces)', 'Late check-out until 3:00 PM'], price: 'Rp 3.900.000', old: 'Rp 4.800.000', end: '2027-06-30', until: 'Valid until 30 Jun 2027' },
+
+      { t: 'discount', id: 'early-bird', big: '20%', title: 'Early Bird Offer', desc: 'Book at least 30 days ahead and enjoy a better rate on every room type.', list: ['Book at least 30 days before arrival', 'Applies to all room types', 'Enter the code in the registration form'], code: 'EARLYNES', end: '2027-03-31', until: 'Valid until 31 Mar 2027' },
+      { t: 'discount', id: 'long-stay', big: '15%', title: 'Long Stay Reward', desc: 'Stay four nights or more and save on your entire booking.', list: ['Minimum stay of 4 consecutive nights', 'Discount applies to the room rate for the whole stay', 'Enter the code in the registration form'], code: 'STAY4PLUS', end: '2027-06-30', until: 'Valid until 30 Jun 2027' },
+      { t: 'discount', id: 'weekday-saver', big: '12%', title: 'Weekday Saver', desc: 'Check in between Sunday and Thursday and enjoy a lower rate for a quieter stay.', list: ['Check-in from Sunday to Thursday', 'Minimum stay of 2 nights', 'Enter the code in the registration form'], code: 'WEEKDAY12', end: '2027-06-30', until: 'Valid until 30 Jun 2027' },
+      { t: 'discount', id: 'club-member', big: '10%', title: 'Club Member Perk', desc: 'Join NES_inn Club and unlock a member-only rate on every stay.', list: ['Join NES_inn Club for free through the registration form', 'The member rate applies to every future stay', 'Show your membership on arrival'], code: 'NESCLUB', end: '2027-12-31', until: 'Valid all year round' },
+
+      { t: 'event', id: 'christmas-eve', img: 7, day: '24', mon: 'Dec', cat: 'Gastronomy', title: 'Christmas Eve Beachfront Dinner', desc: 'A six-course seasonal menu paired with live acoustic music by the sea.', list: ['Six-course seasonal menu', 'Live acoustic music', 'Welcome drink on arrival', 'Beachfront terrace seating'], time: '7:00 PM', place: 'Terrace by the Sea', price: 'Rp 650.000 / person', end: '2026-12-24', until: '24 December 2026' },
+      { t: 'event', id: 'new-year', img: 6, day: '31', mon: 'Dec', cat: 'Celebration', title: 'New Year’s Eve Countdown Gala', desc: 'Welcome the new year with a festive buffet, a DJ set, and a midnight fireworks view.', list: ['Festive buffet dinner', 'DJ set and countdown', 'Midnight fireworks view', 'Welcome drink and party favours'], time: '8:00 PM', place: 'Pool Deck', price: 'Rp 850.000 / person', end: '2026-12-31', until: '31 December 2026' },
+      { t: 'event', id: 'jazz-wine', img: 4, day: '16', mon: 'Jan', cat: 'Live Music', title: 'Sunset Jazz & Wine Evening', desc: 'Smooth jazz, curated wines, and golden hour over the ocean.', list: ['Live jazz trio', 'Curated wine selection', 'Light bites and canapés', 'Sunset views over the ocean'], time: '5:30 PM', place: 'Lobby Lounge', price: 'Rp 350.000 / person', end: '2027-01-16', until: '16 January 2027' },
+      { t: 'event', id: 'lunar-brunch', img: 11, day: '06', mon: 'Feb', cat: 'Family', title: 'Lunar New Year Family Brunch', desc: 'A relaxed family brunch with festive dishes and little red envelopes for the kids.', list: ['Festive brunch buffet', 'Cultural performance', 'Red envelopes for the kids', 'Family-friendly seating'], time: '10:30 AM', place: 'Terrace by the Sea', price: 'Rp 275.000 / person', end: '2027-02-06', until: '6 February 2027' }
+    ];
+    const now = new Date();
+    const active = PROMOS.filter(p => new Date(p.end + 'T23:59:59') >= now);
+
+    /* ---------- Render list ---------- */
+    const media = p => p.t === 'discount'
+      ? `<div class="relative flex flex-col items-center justify-center overflow-hidden bg-preload px-6 py-12 text-center text-white md:min-h-[300px]"><div class="absolute inset-3 border border-dashed border-white/35"></div><p class="relative font-serif text-8xl leading-none">${p.big}</p><p class="relative mt-3 text-xs tracking-[.4em]">OFF</p></div>`
+      : `<div class="ph relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[300px]"><img data-img="${p.img}" alt="${p.title}" class="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105" loading="lazy">${p.t === 'package'
+        ? `<span class="absolute left-4 top-4 bg-preload px-3 py-1 text-[11px] font-medium uppercase tracking-[.2em] text-white">${p.badge}</span>`
+        : `<div class="absolute left-4 top-4 bg-cream px-3 py-2 text-center text-navy"><p class="font-serif text-3xl leading-none">${p.day}</p><p class="mt-1 text-[11px] uppercase tracking-[.25em]">${p.mon}</p></div>`}</div>`;
+
+    const codeBtn = p => `<button type="button" data-code="${p.code}" class="copy flex w-full max-w-xs items-center justify-between border border-dashed border-navy/30 px-4 py-3 text-sm transition hover:border-preload hover:text-preload" aria-label="Copy promo code ${p.code}"><span class="font-medium tracking-[.2em]">${p.code}</span><span class="copy-l text-xs uppercase tracking-widest">Copy</span></button>`;
+
+    const detail = p => p.t === 'package'
+      ? `<ul class="mt-5 space-y-2 text-sm text-navy/75">${p.list.slice(0, 3).map(i => `<li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span>${i}</span></li>`).join('')}</ul>`
+      : p.t === 'event'
+        ? `<ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy/75"><li class="flex items-center gap-2"><i data-lucide="clock" class="h-4 w-4 text-gold"></i>${p.time}</li><li class="flex items-center gap-2"><i data-lucide="map-pin" class="h-4 w-4 text-gold"></i>${p.place}</li></ul>`
+        : `<div class="mt-5">${codeBtn(p)}</div>`;
+
+    const priceBlock = p => p.t === 'package'
+      ? `<div class="flex items-baseline gap-3"><span class="font-serif text-3xl text-preload">${p.price}</span><span class="text-sm text-navy/45 line-through">${p.old}</span></div><p class="mt-1 text-xs text-navy/55">${p.until}</p>`
+      : p.t === 'event'
+        ? `<p class="font-serif text-3xl text-preload">${p.price}</p><p class="mt-1 text-xs text-navy/55">${p.until}</p>`
+        : `<p class="text-xs uppercase tracking-[.2em] text-navy/55">Validity</p><p class="font-serif text-2xl">${p.until}</p>`;
+
+    const row = p => `<li class="pm group grid overflow-hidden bg-white shadow-sm md:grid-cols-[1fr_1.5fr]" data-t="${p.t}">
+      ${media(p)}
+      <div class="flex flex-col p-6 md:p-10">
+        <p class="flex items-center gap-2 text-xs uppercase tracking-[.2em] text-gold"><i data-lucide="${TYPES[p.t][1]}" class="h-4 w-4"></i>${TYPES[p.t][0]}</p>
+        <h3 class="mt-2 font-serif text-3xl md:text-4xl">${p.title}</h3>
+        ${p.t === 'package' ? `<p class="mt-1 text-xs uppercase tracking-[.2em] text-navy/55">${p.sub}</p>` : p.t === 'event' ? `<p class="mt-1 font-serif text-lg italic text-preload">${p.cat}</p>` : ''}
+        <p class="mt-3 text-sm leading-relaxed text-navy/70 md:text-base">${p.desc}</p>
+        ${detail(p)}
+        <div class="mt-auto flex flex-wrap items-end justify-between gap-5 border-t border-navy/10 pt-6">
+          <div>${priceBlock(p)}</div>
+          <div class="flex flex-wrap gap-3 text-sm">
+            <button type="button" data-open="${p.id}" class="rounded-full border border-navy/30 px-6 py-3 transition hover:border-preload hover:text-preload">View Details</button>
+            <a href="${BOOK}" class="rounded-full bg-preload px-6 py-3 text-white transition hover:bg-navy">${CTA[p.t]}</a>
+          </div>
+        </div>
+      </div>
+    </li>`;
+    $('#pm-list').innerHTML = active.map(row).join('');
+    $$('[data-img]').forEach(el => el.src = img(el.dataset.img, el.id === 'pm-bg' ? 2000 : 1200));
+
+    /* ---------- Filters ---------- */
+    const FILTERS = [['all', 'All Offers'], ['package', 'Stay Packages'], ['discount', 'Discounts'], ['event', 'Special Events']];
+    const countOf = f => f === 'all' ? active.length : active.filter(p => p.t === f).length;
+    $('#pm-filters').innerHTML = FILTERS.map(f => `<button type="button" data-f="${f[0]}" aria-pressed="false" ${countOf(f[0]) ? '' : 'disabled'} class="flt rounded-full border px-5 py-2.5 transition disabled:cursor-not-allowed disabled:opacity-40">${f[1]} <span class="opacity-60">(${countOf(f[0])})</span></button>`).join('');
+    function applyFilter(f, animate) {
+      const shown = [];
+      $$('.pm').forEach(r => { const on = f === 'all' || r.dataset.t === f; r.style.display = on ? '' : 'none'; if (on) shown.push(r); });
+      $$('.flt').forEach(b => {
+        const on = b.dataset.f === f;
+        b.setAttribute('aria-pressed', on);
+        ['bg-preload', 'border-preload', 'text-white'].forEach(c => b.classList.toggle(c, on));
+        b.classList.toggle('border-navy/30', !on);
+        if (!b.disabled) b.classList.toggle('hover:border-preload', !on);
+      });
+      $('#pm-count').textContent = `Showing ${shown.length} ${shown.length === 1 ? 'offer' : 'offers'}`;
+      $('#pm-empty').classList.toggle('hidden', shown.length > 0);
+      if (animate && shown.length) gsap.fromTo(shown, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: .7, stagger: .08, ease: 'power3.out', overwrite: true, onComplete: () => ScrollTrigger.refresh() });
+      else ScrollTrigger.refresh();
+    }
+    $$('.flt').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f, true)));
+    applyFilter('all', false);
+
+    /* ---------- Promo code copy ---------- */
+    function copyText(t) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+      return new Promise((res, rej) => {
+        const a = document.createElement('textarea');
+        a.value = t; a.style.position = 'fixed'; a.style.opacity = '0';
+        document.body.appendChild(a); a.select();
+        try { document.execCommand('copy') ? res() : rej(); } catch (err) { rej(err); }
+        a.remove();
+      });
+    }
+    document.addEventListener('click', e => {
+      const b = e.target.closest('.copy'); if (!b) return;
+      const l = b.querySelector('.copy-l');
+      const say = msg => { l.textContent = msg; clearTimeout(b._t); b._t = setTimeout(() => l.textContent = 'Copy', 1800); };
+      copyText(b.dataset.code).then(() => say('Copied')).catch(() => say('Copy failed'));
+    });
+
+    /* ---------- Detail modal ---------- */
+    const dlg = $('#pm-dlg'), dc = $('#pm-dc');
+    const info = (icon, label, val) => `<li class="flex items-start gap-3"><i data-lucide="${icon}" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span><span class="block text-xs uppercase tracking-[.15em] text-navy/50">${label}</span>${val}</span></li>`;
+    const modalHTML = p => {
+      const good = p.t === 'package'
+        ? info('calendar-days', 'Validity', p.until.replace('Valid until ', 'Until ')) + info('tag', 'Package price', `<span class="font-serif text-2xl text-preload">${p.price}</span> <span class="text-navy/45 line-through">${p.old}</span>`) + info('bed-double', 'Room', p.sub)
+        : p.t === 'event'
+          ? info('calendar-days', 'Date', p.until) + info('clock', 'Time', p.time) + info('map-pin', 'Venue', p.place) + info('ticket', 'Price', `<span class="font-serif text-2xl text-preload">${p.price}</span>`)
+          : info('calendar-days', 'Validity', p.until) + `<li class="flex items-start gap-3"><i data-lucide="ticket" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span class="block flex-1"><span class="block text-xs uppercase tracking-[.15em] text-navy/50">Promo code</span><span class="mt-1 block">${codeBtn(p)}</span></span></li>`;
+      return `${p.t === 'discount'
+        ? `<div class="bg-preload px-8 py-12 text-center text-white"><p class="font-serif text-8xl leading-none">${p.big}</p><p class="mt-3 text-xs tracking-[.4em]">OFF</p></div>`
+        : `<div class="ph aspect-[16/8] overflow-hidden"><img src="${img(p.img, 1400)}" alt="${p.title}" class="h-full w-full object-cover"></div>`}
+      <div class="p-6 md:p-10">
+        <p class="flex items-center gap-2 text-xs uppercase tracking-[.2em] text-gold"><i data-lucide="${TYPES[p.t][1]}" class="h-4 w-4"></i>${TYPES[p.t][0]}</p>
+        <h3 id="pm-dt" class="mt-2 font-serif text-4xl text-preload md:text-5xl">${p.title}</h3>
+        <p class="mt-4 text-sm leading-relaxed text-navy/75 md:text-base">${p.desc}</p>
+        <div class="mt-8 grid gap-8 md:grid-cols-2">
+          <div><h4 class="font-serif text-2xl">${p.t === 'discount' ? 'How it works' : p.t === 'event' ? 'Highlights' : 'What’s included'}</h4>
+            <ul class="mt-3 space-y-2 text-sm text-navy/75">${p.list.map(i => `<li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span>${i}</span></li>`).join('')}</ul></div>
+          <div><h4 class="font-serif text-2xl">Good to know</h4><ul class="mt-3 space-y-4 text-sm text-navy/80">${good}</ul></div>
+        </div>
+        <div class="mt-8 border-t border-navy/10 pt-6"><h4 class="font-serif text-xl">Terms &amp; conditions</h4>
+          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-xs leading-relaxed text-navy/60">${TERMS[p.t].map(t => `<li>${t}</li>`).join('')}</ul></div>
+        <div class="mt-8 flex flex-wrap gap-3 text-sm">
+          <a href="${BOOK}" class="rounded-full bg-preload px-8 py-3 text-white transition hover:bg-navy">${CTA[p.t]}</a>
+          <button type="button" data-close class="rounded-full border border-navy/30 px-8 py-3 transition hover:border-preload hover:text-preload">Close</button>
+        </div>
+      </div>`;
+    };
+    function openPromo(id) {
+      const p = PROMOS.find(x => x.id === id); if (!p) return;
+      dc.innerHTML = modalHTML(p); dc.scrollTop = 0;
+      lucide.createIcons();
+      dlg.showModal(); lenis.stop();
+      if (!reduce) gsap.fromTo(dlg, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'power3.out' });
+    }
+    document.addEventListener('click', e => {
+      const o = e.target.closest('[data-open]'); if (o) openPromo(o.dataset.open);
+      if (e.target.closest('[data-close]')) dlg.close();
+    });
+    dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { if (ready && !open) lenis.start(); });
+
+    /* ---------- Smooth scroll ---------- */
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+    lucide.createIcons();
+
+    /* ---------- Navbar + mobile menu ---------- */
+    const burgers = $$('.burger'), menu = $('#mmenu'), nav = $('#nav');
+    gsap.set(menu, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set('.ml', { yPercent: 110 });
+    gsap.set('.mf', { opacity: 0, y: 20 });
+    const mTl = gsap.timeline({ paused: true, defaults: { ease: 'power4.inOut' }, onReverseComplete: () => gsap.set(menu, { visibility: 'hidden' }) })
+      .set(menu, { visibility: 'visible' })
+      .to(menu, { clipPath: 'inset(0 0 0% 0)', duration: reduce ? .01 : .9 })
+      .to('.ml', { yPercent: 0, duration: reduce ? .01 : .8, stagger: .07, ease: 'power3.out' }, '-=.45')
+      .to('.mf', { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, '-=.4');
+    let open = false, ready = false;
+    function setMenu(v) {
+      if (v === open) return;
+      open = v;
+      document.body.classList.toggle('mo', v);
+      burgers.forEach(b => { b.classList.toggle('menu-open', v); b.setAttribute('aria-expanded', v); b.setAttribute('aria-label', v ? 'Close menu' : 'Open menu'); });
+      menu.setAttribute('aria-hidden', !v);
+      if (v) { lenis.stop(); mTl.timeScale(1).play(); } else { mTl.timeScale(1.4).reverse(); if (ready) lenis.start(); }
+    }
+    burgers.forEach(b => b.addEventListener('click', () => setMenu(!open)));
+    addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
+    addEventListener('resize', () => innerWidth >= 1024 && setMenu(false));
+    $$('a.jump').forEach(a => a.addEventListener('click', e => {
+      const t = $(a.getAttribute('href')); if (!t) return;
+      e.preventDefault();
+      const was = open; setMenu(false);
+      setTimeout(() => lenis.scrollTo(0, { duration: 1.4 }), was ? 500 : 0);
+    }));
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => nav.classList.toggle('sc', s.scroll() > 40) });
+
+    /* ---------- Scroll effects ---------- */
+    const splitWords = el => { el.innerHTML = el.textContent.trim().split(/\s+/).map(w => `<span class="inline-block overflow-hidden pb-[.14em] -mb-[.14em] align-bottom"><span class="sw inline-block">${w}</span></span>`).join(' '); };
+    splitWords($('#pm-h1'));
+    $$('h2.sp').forEach(el => {
+      splitWords(el);
+      gsap.from(el.querySelectorAll('.sw'), { yPercent: 115, rotate: 4, transformOrigin: 'left bottom', duration: 1.2, stagger: .09, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+    gsap.set('.pm', { y: 40, opacity: 0 });
+    ScrollTrigger.batch('.pm', { start: 'top 92%', once: true, onEnter: b => gsap.to(b, { y: 0, opacity: 1, duration: 1.1, stagger: .14, ease: 'power3.out', overwrite: 'auto' }) });
+    gsap.to('#pm-bg', { yPercent: 12, scale: 1.08, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+    ScrollTrigger.create({
+      start: 0, end: 'max', onUpdate: s => {
+        gsap.set('#totop-p', { scaleY: s.progress });
+        const show = s.scroll() > 700;
+        gsap.to('#totop', { opacity: show ? 1 : 0, duration: .3, onStart: () => $('#totop').style.pointerEvents = show ? 'auto' : 'none' });
+      }
+    });
+    $('#totop').onclick = () => lenis.scrollTo(0, { duration: 1.6 });
+
+    /* ---------- Preloader + intro ---------- */
+    addEventListener('load', () => {
+      gsap.timeline({ onComplete: () => { $('#preloader').remove(); ready = true; if (!open && !dlg.open) lenis.start(); ScrollTrigger.refresh(); } })
+        .from('#pl-line', { scaleX: 0, duration: reduce ? .01 : 1.1, ease: 'power2.inOut' })
+        .to('#preloader', { yPercent: -100, duration: reduce ? .01 : .9, ease: 'power4.inOut' })
+        .from('#pm-h1 .sw', { yPercent: 115, rotate: 4, transformOrigin: 'left bottom', duration: 1.2, stagger: .09, ease: 'power4.out' }, '-=.5')
+        .from('.hi', { y: 36, opacity: 0, duration: 1.1, stagger: .15, ease: 'power3.out' }, '-=.9');
+    });
+  </script>
+</body>
+
+</html>

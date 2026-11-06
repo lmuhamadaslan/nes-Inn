@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Facilities — NES_inn</title>
+  <meta name="description"
+    content="Pools, wellness, dining, and play. Explore every space at NES_inn, designed for slow, effortless days by the sea.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --color-cream: #fcfcf8; --color-sand: #ebe4d6; --color-navy: #0b2a45; --color-deep: #071c30; --color-gold: #b8955a; --color-gilt: #edcf62; --color-preload: #d31c5e; --color-deep-preload: #d31c5e;
+  }
+</style>
+  <style>
+    body {
+      font-family: "Inter", system-ui, sans-serif
+    }
+
+    /* Navbar: transparent over the banner, solid cream after scrolling */
+    #nav {
+      border-bottom: 1px solid transparent;
+      transition: background-color .4s, color .4s, border-color .4s
+    }
+
+    #nav.sc {
+      background: #fcfcf8;
+      color: #0b2a45;
+      border-color: rgba(11, 42, 69, .1)
+    }
+
+    body.mo #nav,
+    body.mo #nav.sc {
+      background: transparent;
+      color: #fff;
+      border-color: transparent
+    }
+
+    .bl {
+      transition: transform .5s cubic-bezier(.7, 0, .2, 1), opacity .3s;
+      transform-origin: center
+    }
+
+    .menu-open .b1 {
+      transform: translateY(6px) rotate(45deg)
+    }
+
+    .menu-open .b2 {
+      opacity: 0
+    }
+
+    .menu-open .b3 {
+      transform: translateY(-6px) rotate(-45deg)
+    }
+
+    .ph {
+      background: #1d4a6b
+    }
+
+    :focus-visible {
+      outline: 2px solid #b8955a;
+      outline-offset: 3px
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        transition-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-navy antialiased selection:bg-gold selection:text-white">
+
+  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-preload text-white"
+    aria-hidden="true">
+    <div class="text-center">
+      <p class="font-serif text-6xl tracking-wide">NES_inn</p>
+      <div id="pl-line" class="mx-auto mt-5 h-px w-40 origin-left bg-navy"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 text-white">
+    <div class="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
+      <a href="index.html" class="logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)]"
+        aria-label="NES_inn home"><img src="/img/nesinn_logo.jpeg" alt="" width="50" height="50"
+          onerror="this.remove()">NES_inn</a>
+      <ul class="hidden items-center gap-10 text-[15px] font-medium tracking-wide lg:flex" aria-label="Main navigation">
+        <li><a class="transition hover:text-preload" href="/index.html">Home</a></li>
+        <li><a class="transition hover:text-preload" href="/rooms.html">Rooms</a></li>
+        <li><a class="jump border-b border-current pb-1" href="/facilities.html" aria-current="page">Facilities</a></li>
+        <li><a class="transition hover:text-preload" href="/promo.html">Promo</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#gallery">Gallery</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#reviews">Reviews</a></li>
+        <li><a class="transition hover:text-preload" href="/index.html#location">Location</a></li>
+      </ul>
+      <a class="hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy lg:inline-block"
+        href="index.html#register">Contact Us</a>
+      <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
+          class="relative block h-[14px] w-6"><span
+            class="bl b1 absolute left-0 top-0 h-[1.5px] w-full bg-current"></span><span
+            class="bl b2 absolute left-0 top-[6px] h-[1.5px] w-full bg-current"></span><span
+            class="bl b3 absolute left-0 top-3 h-[1.5px] w-full bg-current"></span></span></button>
+    </div>
+  </header>
+
+  <div id="mmenu"
+    class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
+    aria-hidden="true">
+    <ul class="flex flex-col">
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html">Home</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="/rooms.html">Rooms</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl text-preload"
+          href="/facilities.html">Facilities</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="promo.html">Promo</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#gallery">Gallery</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#location">Location</a>
+      </li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#register">Contact
+          Us</a></li>
+    </ul>
+    <div class="mf text-sm text-white/65">
+      <div class="mb-4 flex gap-5"><i data-lucide="message-circle" class="h-5 w-5"></i><i data-lucide="instagram"
+          class="h-5 w-5"></i><i data-lucide="navigation" class="h-5 w-5"></i></div>
+      <p>hello@nesinn.com · +62 111 222 333</p>
+      <p class="mt-1">Raha, Sulawesi Tenggara, Indonesia</p>
+    </div>
+  </div>
+
+  <main>
+    <!-- BANNER -->
+    <section id="top" class="relative flex h-[62svh] min-h-[440px] items-end overflow-hidden bg-deep text-white">
+      <img id="fc-bg" data-img="5" alt="" class="absolute inset-0 h-full w-full object-cover">
+      <div class="absolute inset-0 bg-[#0b2a45]/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071c30]/70"></div>
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-14 md:pb-20">
+        <nav aria-label="Breadcrumb" class="hi text-xs uppercase tracking-[.3em] text-white/75"><a href="index.html"
+            class="transition hover:text-gilt">Home</a><span class="mx-3">/</span><span
+            class="text-gilt">Facilities</span></nav>
+        <h1 id="fc-h1" class="mt-5 font-serif text-5xl font-medium md:text-8xl">Our Facilities</h1>
+        <p class="hi mt-5 max-w-xl text-base font-light leading-8 text-white/90 md:text-lg">Pools, wellness, dining,
+          and play. Every space at NES_inn is designed for slow, effortless days by the sea.</p>
+      </div>
+    </section>
+
+    <!-- FACILITY LIST -->
+    <section class="bg-cream px-6 py-16 md:px-12 md:py-24">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="sr-only">All facilities</h2>
+        <div class="flex flex-col gap-6 border-b border-navy/15 pb-6 md:flex-row md:items-center md:justify-between">
+          <div id="fc-filters" role="group" aria-label="Filter facilities" class="flex flex-wrap gap-3 text-sm"></div>
+          <p id="fc-count" class="text-sm text-navy/60" aria-live="polite"></p>
+        </div>
+        <ul id="fc-list" class="mt-14 flex flex-col gap-20 md:mt-20 md:gap-28"></ul>
+      </div>
+    </section>
+
+    <!-- GUEST SERVICES -->
+    <section class="bg-preload/10 px-6 py-24 md:px-12 md:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center">
+          <p data-r class="font-serif text-lg italic text-navy">Included With Your Stay</p>
+          <h2 class="sp mx-auto mt-1 max-w-xl font-serif text-4xl text-preload md:text-5xl">Little Things That Make a
+            Difference</h2>
+        </div>
+        <div id="svc-grid" class="mt-14 grid gap-px bg-navy/10 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-deep px-6 py-24 text-center text-white md:py-32">
+      <div class="mx-auto max-w-2xl">
+        <p data-r class="font-serif text-lg italic text-gilt">Make the Most of Every Space</p>
+        <h2 class="sp mt-1 font-serif text-4xl md:text-5xl">Stay a Little Longer</h2>
+        <p data-r class="mt-5 text-sm leading-relaxed text-white/75 md:text-base">Our stay packages bring the pool,
+          spa, dining, and family spaces together at a better rate.</p>
+        <div data-r class="mt-10 flex flex-wrap items-center justify-center gap-4 text-sm">
+          <a href="promo.html"
+            class="inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-white transition hover:bg-white hover:text-navy">See
+            Stay Packages <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+          <a href="index.html#register"
+            class="inline-flex items-center gap-2 rounded-full border border-white/40 px-8 py-3 transition hover:border-gilt hover:text-gilt">Contact
+            Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gradient-to-b from-preload/90 to-black/90 px-6 pb-8 pt-20 text-white">
+    <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.5fr_1fr]">
+      <div>
+        <p class="font-serif text-4xl">NES_inn HOTEL</p>
+        <p class="mt-4 max-w-sm leading-8 text-white/90">Beachfront living with understated coastal luxury, crafted for
+          slow mornings and elevated resort stays.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 text-sm">
+        <ul class="space-y-3">
+          <li class="text-white/50">Explore</li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Instagram</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Facebook</a></li>
+          <li><a href="https://www.waze.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Waze</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Linkedin</a></li>
+        </ul>
+        <ul class="space-y-3">
+          <li class="text-white/50">Contact</li>
+          <li><a href="tel:+62111222333" class="transition hover:text-preload">+62 111 222 333</a></li>
+          <li><a href="mailto:hello@NES_inn.com" class="transition hover:text-preload">hello@NES_inn.com</a></li>
+          <li class="text-white/60">Raha, Sulawesi Tenggara, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="mx-auto mt-14 flex max-w-6xl flex-col gap-3 border-t border-white/10 pt-6 text-xs tracking-wide text-white/55 md:flex-row md:justify-between">
+      <p>Budget with nice athmosphere</p>
+      <p>© 2026 NES_inn HOTEL. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button id="totop" type="button"
+    class="pointer-events-none fixed bottom-6 right-6 z-30 flex flex-col items-center gap-2 bg-white/90 px-3 py-3 text-navy opacity-0 shadow-lg backdrop-blur"
+    aria-label="Back to top"><i data-lucide="chevron-up" class="h-4 w-4"></i><span
+      class="block h-10 w-px bg-navy/20"><span id="totop-p" class="block w-px origin-top bg-navy"
+        style="height:100%;transform:scaleY(0)"></span></span></button>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const P = { 1: '1540541338287-41700207dee6', 2: '1520250497591-112f2f40a3f4', 3: '1544161515-4ab6ce6db874', 4: '1534438327276-14e5300c3a48', 5: '1573843981267-be1999ff37cd', 6: '1507525428034-b723cf961d3e', 7: '1414235077428-338989a2e8c0', 8: '1551882547-ff40c63fe5fa', 9: '1537996194471-e657df975ab4', 10: '1602002418082-a4443e081dd1', 11: '1582719508461-905c673771fd', 12: '1566073771259-6a8506099945', 13: '1571896349842-33c89424de2d', 14: '1631049307264-da0ec9d70304', 15: '1584622650111-993a426fbf0a', 16: '1570077188670-e3a8d69ac5ff', 17: '1590490360182-c33d57733427' };
+    const img = (n, w = 1200) => `https://images.unsplash.com/photo-${P[n]}?auto=format&fit=crop&w=${w}&q=80`;
+
+    /* ---------- Data ---------- */
+    /* Nama, lantai, dan gambar mengikuti template. Fitur & jam buka adalah CONTOH — sesuaikan dengan kondisi hotel. */
+    const CAT = {
+      leisure: ['Pool & Leisure', 'waves'],
+      wellness: ['Wellness', 'sparkles'],
+      dining: ['Dining & Family', 'utensils'],
+      services: ['Guest Services', 'concierge-bell']
+    };
+    const FAC = [
+      { id: 'infinity-pool', c: 'leisure', img: 2, name: 'Infinity Pool', desc: 'Dive into our stunning infinity pool overlooking the ocean. The perfect spot to watch the sunset with a cocktail in hand.', list: ['Ocean-facing infinity edge', 'Sun loungers and shaded seating', 'Poolside drinks and light bites', 'Golden-hour sunset views'], hours: '7:00 AM – 9:00 PM' },
+      { id: 'aegean-falls', c: 'leisure', img: 5, loc: 'Ground Floor', name: 'Aegean Falls Cascading Pool', desc: 'A cascading pool framed by soft light and the gentle sound of falling water, made for slow, shaded afternoons.', list: ['Cascading water feature', 'Shaded lounge nooks', 'Ambient evening lighting', 'Steps from the lobby'], hours: '7:00 AM – 9:00 PM' },
+      { id: 'spa-wellness', c: 'wellness', img: 3, name: 'Spa & Wellness', desc: 'Relax and unwind with our signature massage treatments using organic local ingredients.', list: ['Signature massage treatments', 'Organic local ingredients', 'Couples treatment room', 'Private, quiet setting'], hours: '10:00 AM – 8:00 PM · By appointment' },
+      { id: 'fitness-center', c: 'wellness', img: 4, name: 'Fitness Center', desc: 'Stay active during your vacation in our state-of-the-art gym equipped with the latest machines.', list: ['Cardio and strength machines', 'Free weights', 'Towels and drinking water', 'Open to in-house guests'], hours: '6:00 AM – 10:00 PM' },
+      { id: 'terrace-by-the-sea', c: 'dining', img: 8, loc: 'Level 8', name: 'Terrace by the Sea BBQ Pit & Lounge', desc: 'An open-air terrace with a BBQ pit and lounge seating, made for long evenings and sea breezes.', list: ['Open-air BBQ pit', 'Lounge seating by the sea', 'Seasonal dinners and events', 'Sunset views'], hours: '4:00 PM – 11:00 PM' },
+      { id: 'play-garden', c: 'dining', img: 11, loc: 'Level 8', name: 'The Play Garden', desc: 'A playful corner for our youngest guests, with games and soft play so parents can unwind nearby.', list: ['Soft play and games', 'Shaded seating for parents', 'Safe, enclosed space', 'Included in the Family Fun Getaway'], hours: '8:00 AM – 6:00 PM' },
+      { id: 'lobby-reception', c: 'services', img: 12, loc: 'Ground Floor', name: 'Lobby Reception', desc: 'Your first hello at NES_inn: a warm, welcoming lobby where our team helps with check-in, transfers, and anything you need.', list: ['Check-in and check-out', 'Free luggage storage', 'Tour and transfer arrangements', 'Local tips and recommendations'], hours: 'Open 24 hours' }
+    ];
+    const SVC = [
+      ['wifi', 'Free Wi-Fi', 'Complimentary high-speed Wi-Fi in every room and public area.'],
+      ['car', 'Free Parking', 'On-site parking for in-house guests, on a first-come, first-served basis.'],
+      ['luggage', 'Luggage Storage', 'We keep your bags safe before check-in and after check-out, free of charge.'],
+      ['plane', 'Airport & Port Transfer', 'Arranged on request from Sugimanuru Airport and Raha Nusantara Port.'],
+      ['coffee', 'Daily Breakfast', 'Served every morning from 6:30 to 10:00 AM, with local flavours.'],
+      ['shirt', 'Laundry Service', 'Laundry available on request, with three pieces included in Business Essentials.']
+    ];
+
+    /* ---------- Render ---------- */
+    const row = (f, i) => `<li id="f-${f.id}" class="fr grid items-center gap-8 md:grid-cols-2 md:gap-16" data-c="${f.c}">
+      <div class="fm ph group relative aspect-[4/3] overflow-hidden ${i % 2 ? 'md:order-2' : ''}"><img data-img="${f.img}" alt="${f.name}" class="h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105" loading="lazy">${f.loc ? `<span class="absolute left-4 top-4 bg-cream px-3 py-1 text-[11px] font-medium uppercase tracking-[.2em] text-navy">${f.loc}</span>` : ''}</div>
+      <div>
+        <p class="flex items-center gap-2 font-serif text-lg italic text-preload"><i data-lucide="${CAT[f.c][1]}" class="h-4 w-4 text-gold"></i>${CAT[f.c][0]}</p>
+        <h3 class="mt-1 font-serif text-4xl md:text-5xl">${f.name}</h3>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-navy/70 md:text-base">${f.desc}</p>
+        <ul class="mt-6 grid gap-2 text-sm text-navy/75 sm:grid-cols-2">${f.list.map(t => `<li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span>${t}</span></li>`).join('')}</ul>
+        <p class="mt-6 flex items-center gap-2 text-sm text-navy/75"><i data-lucide="clock" class="h-4 w-4 text-gold"></i>${f.hours}</p>
+        <a href="index.html#register" class="mt-7 inline-flex items-center gap-2 border-b border-navy pb-1 text-sm transition hover:border-preload hover:text-preload">Plan Your Stay <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+    </li>`;
+    $('#fc-list').innerHTML = FAC.map(row).join('');
+    $('#svc-grid').innerHTML = SVC.map(s => `<div class="sv bg-cream p-8 md:p-10">
+      <i data-lucide="${s[0]}" class="h-8 w-8 text-gold" stroke-width="1.2"></i>
+      <h3 class="mt-5 font-serif text-2xl md:text-3xl">${s[1]}</h3>
+      <p class="mt-2 text-sm leading-relaxed text-navy/70">${s[2]}</p>
+    </div>`).join('');
+    $$('[data-img]').forEach(el => el.src = img(el.dataset.img, el.id === 'fc-bg' ? 2000 : 1200));
+
+    /* ---------- Filters ---------- */
+    const FILTERS = [['all', 'All Facilities'], ['leisure', 'Pool & Leisure'], ['wellness', 'Wellness'], ['dining', 'Dining & Family'], ['services', 'Guest Services']];
+    const countOf = f => f === 'all' ? FAC.length : FAC.filter(x => x.c === f).length;
+    $('#fc-filters').innerHTML = FILTERS.map(f => `<button type="button" data-f="${f[0]}" aria-pressed="false" class="flt rounded-full border px-5 py-2.5 transition">${f[1]} <span class="opacity-60">(${countOf(f[0])})</span></button>`).join('');
+    function applyFilter(f, animate) {
+      const shown = [];
+      $$('.fr').forEach(r => { const on = f === 'all' || r.dataset.c === f; r.style.display = on ? '' : 'none'; if (on) shown.push(r); });
+      shown.forEach((r, i) => r.querySelector('.fm').classList.toggle('md:order-2', i % 2 === 1));
+      $$('.flt').forEach(b => {
+        const on = b.dataset.f === f;
+        b.setAttribute('aria-pressed', on);
+        ['bg-preload', 'border-preload', 'text-white'].forEach(c => b.classList.toggle(c, on));
+        b.classList.toggle('border-navy/30', !on);
+        b.classList.toggle('hover:border-preload', !on);
+      });
+      $('#fc-count').textContent = `Showing ${shown.length} ${shown.length === 1 ? 'space' : 'spaces'}`;
+      if (animate) gsap.fromTo(shown, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .12, ease: 'power3.out', overwrite: true, onComplete: () => ScrollTrigger.refresh() });
+      else ScrollTrigger.refresh();
+    }
+    $$('.flt').forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.f, true)));
+    applyFilter('all', false);
+
+    /* ---------- Smooth scroll ---------- */
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+    lucide.createIcons();
+
+    /* ---------- Navbar + mobile menu ---------- */
+    const burgers = $$('.burger'), menu = $('#mmenu'), nav = $('#nav');
+    gsap.set(menu, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set('.ml', { yPercent: 110 });
+    gsap.set('.mf', { opacity: 0, y: 20 });
+    const mTl = gsap.timeline({ paused: true, defaults: { ease: 'power4.inOut' }, onReverseComplete: () => gsap.set(menu, { visibility: 'hidden' }) })
+      .set(menu, { visibility: 'visible' })
+      .to(menu, { clipPath: 'inset(0 0 0% 0)', duration: reduce ? .01 : .9 })
+      .to('.ml', { yPercent: 0, duration: reduce ? .01 : .8, stagger: .07, ease: 'power3.out' }, '-=.45')
+      .to('.mf', { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, '-=.4');
+    let open = false, ready = false;
+    function setMenu(v) {
+      if (v === open) return;
+      open = v;
+      document.body.classList.toggle('mo', v);
+      burgers.forEach(b => { b.classList.toggle('menu-open', v); b.setAttribute('aria-expanded', v); b.setAttribute('aria-label', v ? 'Close menu' : 'Open menu'); });
+      menu.setAttribute('aria-hidden', !v);
+      if (v) { lenis.stop(); mTl.timeScale(1).play(); } else { mTl.timeScale(1.4).reverse(); if (ready) lenis.start(); }
+    }
+    burgers.forEach(b => b.addEventListener('click', () => setMenu(!open)));
+    addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
+    addEventListener('resize', () => innerWidth >= 1024 && setMenu(false));
+    $$('a.jump').forEach(a => a.addEventListener('click', e => {
+      const t = $(a.getAttribute('href')); if (!t) return;
+      e.preventDefault();
+      const was = open; setMenu(false);
+      setTimeout(() => lenis.scrollTo(0, { duration: 1.4 }), was ? 500 : 0);
+    }));
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: s => nav.classList.toggle('sc', s.scroll() > 40) });
+
+    /* ---------- Scroll effects ---------- */
+    const splitWords = el => { el.innerHTML = el.textContent.trim().split(/\s+/).map(w => `<span class="inline-block overflow-hidden pb-[.14em] -mb-[.14em] align-bottom"><span class="sw inline-block">${w}</span></span>`).join(' '); };
+    splitWords($('#fc-h1'));
+    $$('h2.sp').forEach(el => {
+      splitWords(el);
+      gsap.from(el.querySelectorAll('.sw'), { yPercent: 115, rotate: 4, transformOrigin: 'left bottom', duration: 1.2, stagger: .09, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+    gsap.set('[data-r], .fr, .sv', { y: 40, opacity: 0 });
+    ScrollTrigger.batch('[data-r], .fr, .sv', { start: 'top 90%', once: true, onEnter: b => gsap.to(b, { y: 0, opacity: 1, duration: 1.1, stagger: .14, ease: 'power3.out', overwrite: 'auto' }) });
+    $$('.fm img').forEach(im => gsap.from(im, { scale: 1.25, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: im, start: 'top 88%', once: true } }));
+    gsap.to('#fc-bg', { yPercent: 12, scale: 1.08, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: true } });
+    ScrollTrigger.create({
+      start: 0, end: 'max', onUpdate: s => {
+        gsap.set('#totop-p', { scaleY: s.progress });
+        const show = s.scroll() > 700;
+        gsap.to('#totop', { opacity: show ? 1 : 0, duration: .3, onStart: () => $('#totop').style.pointerEvents = show ? 'auto' : 'none' });
+      }
+    });
+    $('#totop').onclick = () => lenis.scrollTo(0, { duration: 1.6 });
+
+    /* ---------- Preloader + intro ---------- */
+    addEventListener('load', () => {
+      gsap.timeline({
+        onComplete: () => {
+          $('#preloader').remove(); ready = true; if (!open) lenis.start(); ScrollTrigger.refresh();
+          /* Deep link, mis. facilities.html#f-spa-wellness */
+          const t = location.hash && document.getElementById(location.hash.slice(1));
+          if (t) lenis.scrollTo(t, { offset: -100, duration: 1.4 });
+        }
+      })
+        .from('#pl-line', { scaleX: 0, duration: reduce ? .01 : 1.1, ease: 'power2.inOut' })
+        .to('#preloader', { yPercent: -100, duration: reduce ? .01 : .9, ease: 'power4.inOut' })
+        .from('#fc-h1 .sw', { yPercent: 115, rotate: 4, transformOrigin: 'left bottom', duration: 1.2, stagger: .09, ease: 'power4.out' }, '-=.5')
+        .from('.hi', { y: 36, opacity: 0, duration: 1.1, stagger: .15, ease: 'power3.out' }, '-=.9');
+    });
+  </script>
+</body>
+
+</html>

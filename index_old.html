@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NES_inn — Luxury Hotel &amp; Resort</title>
+  <meta name="description"
+    content="Beachfront living with understated coastal luxury, crafted for slow mornings and elevated resort stays.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@0.460.0"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style type="text/tailwindcss">
+    @theme {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+    --color-cream: #fcfcf8; --color-sand: #ebe4d6; --color-navy: #0b2a45; --color-deep: #071c30; --color-gold: #b8955a; --color-gilt: #edcf62; --color-preload: #d31c5e; --color-deep-preload: #d31c5e;
+  }
+</style>
+  <style>
+    body {
+      font-family: "Inter", system-ui, sans-serif
+    }
+
+    body.mo #navbar {
+      background: transparent;
+      border-color: transparent;
+      color: #fff
+    }
+
+    body.mo #navbar .logo {
+      color: #fff
+    }
+
+    .bl {
+      transition: transform .5s cubic-bezier(.7, 0, .2, 1), opacity .3s;
+      transform-origin: center
+    }
+
+    .menu-open .b1 {
+      transform: translateY(6px) rotate(45deg)
+    }
+
+    .menu-open .b2 {
+      opacity: 0
+    }
+
+    .menu-open .b3 {
+      transform: translateY(-6px) rotate(-45deg)
+    }
+
+    .ph {
+      background: #1d4a6b
+    }
+
+    :focus-visible {
+      outline: 2px solid #b8955a;
+      outline-offset: 3px
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        transition-duration: .01ms !important
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-navy antialiased selection:bg-gold selection:text-white">
+
+  <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-preload text-white"
+    aria-hidden="true">
+    <div class="text-center">
+      <p class="font-serif text-6xl tracking-wide">NES_inn</p>
+      <div id="pl-line" class="mx-auto mt-5 h-px w-40 origin-left bg-navy"></div>
+    </div>
+  </div>
+
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <symbol id="orn" viewBox="-50 -50 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle r="12" />
+        <ellipse cy="-31" rx="7" ry="13" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(45)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(90)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(135)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(180)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(225)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(270)" />
+        <ellipse cy="-31" rx="7" ry="13" transform="rotate(315)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(22.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(67.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(112.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(157.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(202.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(247.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(292.5)" />
+        <ellipse cy="-20" rx="2.6" ry="5" transform="rotate(337.5)" />
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- Hero top bar (state 1: top of page) -->
+  <div id="topbar" class="fixed inset-x-0 top-0 z-50 text-white">
+    <div class="flex h-20 items-center justify-between px-6 lg:px-12">
+      <nav class="hidden items-center gap-5 text-[15px] tracking-[.14em] lg:flex" aria-label="Hero navigation">
+        <a class="jump transition hover:text-gilt" href="#promo">Promo</a><span class="h-4 w-px bg-white/40"></span>
+        <a class="jump transition hover:text-gilt" href="#facilities">Facilities</a><span
+          class="h-4 w-px bg-white/40"></span>
+        <a class="jump transition hover:text-gilt" href="#gallery">Gallery</a>
+      </nav>
+      <a href="#home" class="jump logo flex items-center gap-2 font-serif text-[clamp(1.5rem,6vw,1.9rem)] lg:hidden"
+        aria-label="NES_inn home"><img src="/img-ref/nesinn_logo.jpeg" class="logo-img" alt="" width="40"
+          height="40">NES_inn</a>
+      <div class="hidden items-center gap-7 lg:flex">
+        <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp"
+          class="transition hover:text-gilt"><i data-lucide="message-circle" class="h-5 w-5"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"
+          class="transition hover:text-gilt"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+        <a href="https://www.google.com/maps" target="_blank" rel="noopener" aria-label="Maps"
+          class="transition hover:text-gilt"><i data-lucide="navigation" class="h-5 w-5"></i></a>
+        <span class="h-4 w-px bg-white/40"></span>
+        <a class="jump text-[15px] tracking-[.14em] transition hover:text-gilt" href="#register">Contact Us</a>
+      </div>
+      <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
+          class="relative block h-[14px] w-6"><span
+            class="bl b1 absolute left-0 top-0 h-[1.5px] w-full bg-current"></span><span
+            class="bl b2 absolute left-0 top-[6px] h-[1.5px] w-full bg-current"></span><span
+            class="bl b3 absolute left-0 top-3 h-[1.5px] w-full bg-current"></span></span></button>
+    </div>
+  </div>
+
+  <!-- Main navbar (state 2: after scrolling) -->
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-navy/10 bg-cream text-navy">
+    <div class="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
+      <a href="#home"
+        class="jump logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)] text-[#3b2a0a]"
+        aria-label="NES_inn home"><img src="/img-ref/nesinn_logo.jpeg" class="logo-img" alt="" width="50"
+          height="50">NES_inn</a>
+      <ul class="hidden items-center gap-10 text-[15px] font-medium tracking-wide lg:flex" aria-label="Main navigation">
+        <li><a class="jump transition hover:text-preload" href="#home">Home</a></li>
+        <li><a class="jump transition hover:text-preload" href="#location">Location</a></li>
+        <li><a class="jump transition hover:text-preload" href="#promo">Promo</a></li>
+        <li><a class="jump transition hover:text-preload" href="#facilities">Facilities</a></li>
+        <li><a class="jump transition hover:text-preload" href="#reviews">Reviews</a></li>
+        <li><a class="jump transition hover:text-preload" href="#gallery">Gallery</a></li>
+      </ul>
+      <a class="jump hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy hover:text-white lg:inline-block"
+        href="#register">Contact Us</a>
+      <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
+        aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
+          class="relative block h-[14px] w-6"><span
+            class="bl b1 absolute left-0 top-0 h-[1.5px] w-full bg-current"></span><span
+            class="bl b2 absolute left-0 top-[6px] h-[1.5px] w-full bg-current"></span><span
+            class="bl b3 absolute left-0 top-3 h-[1.5px] w-full bg-current"></span></span></button>
+    </div>
+  </header>
+
+  <div id="mmenu"
+    class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
+    aria-hidden="true">
+    <ul class="flex flex-col">
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#home">Home</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#location">Location</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#promo">Promo</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#facilities">Facilities</a>
+      </li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#reviews">Reviews</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#gallery">Gallery</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl text-gilt" href="#register">Contact
+          Us</a></li>
+    </ul>
+    <div class="mf text-sm text-white/65">
+      <div class="mb-4 flex gap-5"><i data-lucide="message-circle" class="h-5 w-5"></i><i data-lucide="instagram"
+          class="h-5 w-5"></i><i data-lucide="navigation" class="h-5 w-5"></i></div>
+      <p>hello@nesinn.com · +62 111 222 333</p>
+      <p class="mt-1">Raha, Sulawesi Tenggara, Indonesia</p>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="relative h-[100svh] min-h-[620px] overflow-hidden bg-deep text-white">
+      <div id="slides" class="absolute inset-0"></div>
+      <div class="absolute inset-0 bg-[#0b2a45]/55"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#071c30]/60"></div>
+      <div id="hero-c" class="relative z-10 flex h-full flex-col items-center justify-center px-6 pb-20 text-center">
+        <div class="hi flex items-center justify-center gap-3 md:gap-5">
+          <img src="/img-ref/nesinn_logo.jpeg" alt="" class="h-17 w-17 text-gilt md:h-30 md:w-30">
+          <h1 class="font-serif text-6xl font-medium md:text-8xl">NES_inn</h1>
+        </div>
+        <p class="hi mt-8 max-w-2xl text-base font-light leading-8 md:text-xl">Experience elevated living with
+          thoughtfully designed residences, refined comfort, and exclusive resort-style amenities.</p>
+        <div
+          class="hi mt-12 flex flex-col items-center gap-3 text-[11px] font-medium uppercase tracking-[.38em] text-gilt md:flex-row md:gap-6 md:text-sm">
+          <span>Curated Stays</span><span class="hidden h-px w-12 bg-gilt/70 md:block"></span><span>Tropical
+            Escape</span><span class="hidden h-px w-12 bg-gilt/70 md:block"></span><span>Private Comfort</span>
+        </div>
+      </div>
+      <div id="hero-b" class="absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-4 px-6">
+        <p id="h-title" class="hi font-serif text-4xl italic text-gilt md:text-5xl">The Arrival</p>
+        <div class="hi flex items-center gap-4 text-sm tracking-wider md:gap-6">
+          <button id="h-prev" type="button" class="text-white/80 transition hover:text-gilt"
+            aria-label="Previous slide">PREV</button>
+          <p class="text-lg tracking-widest md:text-xl"><span id="h-cur">01</span> &nbsp;/&nbsp; <span
+              id="h-tot">03</span></p>
+          <div class="h-px w-24 bg-white/30 md:w-36">
+            <div id="h-prog" class="h-px origin-left bg-white"></div>
+          </div>
+          <button id="h-next" type="button" class="text-white/80 transition hover:text-gilt"
+            aria-label="Next slide">NEXT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION & NEARBY -->
+    <section id="location" class="bg-cream px-6 py-24 md:px-12 md:py-32">
+      <div class="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+        <div class="self-start lg:sticky lg:top-28">
+          <p data-r class="font-serif text-xl italic text-navy">Find Us</p>
+          <h2 class="mt-1 font-serif text-5xl text-preload md:text-7xl">Location &amp; Nearby</h2>
+          <p data-r class="mt-5 max-w-md text-base font-light leading-8 text-navy/75 md:text-lg">Set in the coastal town
+            of Raha on Muna Island, NES_inn puts the town, the sea, and some of Southeast Sulawesi’s most memorable
+            sights within an easy drive.</p>
+          <div data-r class="mt-8 flex items-start gap-3 text-sm">
+            <i data-lucide="map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-gold" stroke-width="1.4"></i>
+            <div>
+              <p class="font-medium">NES_inn Hotel</p>
+              <p class="text-navy/70">Raha, Sulawesi Tenggara, Indonesia</p>
+            </div>
+          </div>
+          <div class="rimg ph mt-8 aspect-[4/3] overflow-hidden">
+            <iframe title="Map of Raha, Sulawesi Tenggara" class="h-full w-full border-0"
+              style="filter:saturate(.75) contrast(1.05)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Raha%2C%20Sulawesi%20Tenggara%2C%20Indonesia&z=12&output=embed"></iframe>
+          </div>
+          <div data-r class="mt-6 flex flex-wrap gap-3 text-sm">
+            <a href="https://www.google.com/maps/search/?api=1&query=Raha%2C+Sulawesi+Tenggara%2C+Indonesia"
+              target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 rounded-full bg-preload px-6 py-3 text-white transition hover:bg-navy">Open
+              in Google Maps <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <div data-r class="flex items-end justify-between gap-6 border-b border-navy/30 pb-4">
+            <h3 class="font-serif text-3xl md:text-4xl">Nearby</h3>
+            <p class="text-xs uppercase tracking-[.2em] text-navy/55">Estimated travel time by car</p>
+          </div>
+          <ul id="loc-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO -->
+    <section id="promo" class="bg-preload/10 px-6 py-24 md:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center">
+          <p data-r class="font-serif text-lg italic text-navy">Special Offers</p>
+          <h2 class="mx-auto mt-1 max-w-xl font-serif text-4xl text-preload md:text-5xl">Promotions Made for Your
+            Perfect Stay</h2>
+          <p data-r class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-navy/70 md:text-base">Curated stay
+            packages, member-friendly discounts, and special events to make every visit to NES_inn more rewarding.</p>
+        </div>
+
+        <!-- Stay packages -->
+        <div class="mt-16 md:mt-20">
+          <div data-r class="mb-8 flex items-end justify-between gap-6 border-b border-navy/15 pb-5">
+            <div class="flex items-center gap-4">
+              <i data-lucide="bed-double" class="h-8 w-8 shrink-0 text-gold" stroke-width="1.2"></i>
+              <div>
+                <h3 class="font-serif text-3xl md:text-4xl">Stay Packages</h3>
+                <p class="mt-1 text-sm text-navy/70">All-in-one stays with dining, wellness, and little extras included.
+                </p>
+              </div>
+            </div>
+            <span class="hidden text-xs tracking-widest text-navy/55 md:block">01 / 03</span>
+          </div>
+          <div id="promo-packages" class="grid gap-6 md:grid-cols-3"></div>
+        </div>
+
+        <!-- Discounts -->
+        <div class="mt-20 md:mt-24">
+          <div data-r class="mb-8 flex items-end justify-between gap-6 border-b border-navy/15 pb-5">
+            <div class="flex items-center gap-4">
+              <i data-lucide="badge-percent" class="h-8 w-8 shrink-0 text-gold" stroke-width="1.2"></i>
+              <div>
+                <h3 class="font-serif text-3xl md:text-4xl">Exclusive Discounts</h3>
+                <p class="mt-1 text-sm text-navy/70">Copy a code and apply it when you book directly with us.</p>
+              </div>
+            </div>
+            <span class="hidden text-xs tracking-widest text-navy/55 md:block">02 / 03</span>
+          </div>
+          <div id="promo-discounts" class="grid gap-6 md:grid-cols-3"></div>
+        </div>
+
+        <!-- Special events -->
+        <div class="mt-20 md:mt-24">
+          <div data-r class="mb-8 flex items-end justify-between gap-6 border-b border-navy/15 pb-5">
+            <div class="flex items-center gap-4">
+              <i data-lucide="party-popper" class="h-8 w-8 shrink-0 text-gold" stroke-width="1.2"></i>
+              <div>
+                <h3 class="font-serif text-3xl md:text-4xl">Special Events</h3>
+                <p class="mt-1 text-sm text-navy/70">Seasonal evenings by the sea. Limited seats, reserve early.</p>
+              </div>
+            </div>
+            <span class="hidden text-xs tracking-widest text-navy/55 md:block">03 / 03</span>
+          </div>
+          <div id="promo-events" class="grid gap-6 md:grid-cols-3"></div>
+        </div>
+
+        <p data-r class="mt-12 text-center text-xs text-navy/55">Terms and conditions apply. All offers are subject to
+          availability and cannot be combined unless stated otherwise.</p>
+      </div>
+    </section>
+
+    <!-- FACILITIES -->
+    <section id="facilities" class="grid lg:grid-cols-2">
+      <div class="ph h-[420px] overflow-hidden lg:h-auto lg:min-h-[680px]"><img data-img="2"
+          alt="Resort pool overlooking the ocean" class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="flex flex-col justify-center px-6 py-16 md:px-16">
+        <p data-r class="font-serif text-lg italic text-navy">Indulge</p>
+        <h2 data-r class="mt-1 font-serif text-4xl md:text-5xl text-preload">Our Facilities</h2>
+        <div id="tabs" role="tablist" aria-label="Facilities"
+          class="mt-8 flex gap-6 overflow-x-auto border-b border-navy/15 text-sm"></div>
+        <div id="panel" role="tabpanel" class="mt-8">
+          <h3 id="p-title" class="font-serif text-2xl"></h3>
+          <p id="p-text" class="mt-2 max-w-md text-sm leading-relaxed text-navy/70"></p>
+          <div class="ph mt-6 aspect-[16/9] overflow-hidden"><img id="p-img" alt="" class="h-full w-full object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUEST REVIEWS -->
+    <section id="reviews" class="bg-cream px-6 py-24 md:px-12 md:py-32">
+      <div class="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-[.8fr_1.6fr] lg:gap-16">
+        <div class="min-w-0 self-start">
+          <p data-r class="font-serif text-xl italic text-navy">Guest Reviews</p>
+          <h2 class="mt-1 font-serif text-5xl text-preload md:text-7xl">Loved by Our Guests</h2>
+          <p data-r class="mt-5 max-w-md text-base font-light leading-8 text-navy/75 md:text-lg">Words from guests who
+            have stayed with us, shared in their own voice.</p>
+
+          <div data-r class="mt-10 flex items-center gap-6">
+            <p id="rv-avg" class="font-serif text-7xl leading-none text-preload">0.0</p>
+            <div>
+              <div id="rv-stars" class="flex gap-1" aria-hidden="true"></div>
+              <p id="rv-count" class="mt-2 text-sm text-navy/70"></p>
+            </div>
+          </div>
+
+          <div data-r class="mt-10 flex items-center gap-4">
+            <button id="rv-prev" type="button" aria-label="Previous review"
+              class="flex h-12 w-12 items-center justify-center rounded-full border border-navy/30 transition hover:border-preload hover:bg-preload hover:text-white"><i
+                data-lucide="arrow-left" class="h-5 w-5" stroke-width="1.4"></i></button>
+            <button id="rv-next" type="button" aria-label="Next review"
+              class="flex h-12 w-12 items-center justify-center rounded-full border border-navy/30 transition hover:border-preload hover:bg-preload hover:text-white"><i
+                data-lucide="arrow-right" class="h-5 w-5" stroke-width="1.4"></i></button>
+            <p id="rv-num" class="ml-2 font-serif text-xl tabular-nums text-navy/70" aria-live="off">01 / 01</p>
+          </div>
+        </div>
+
+        <div data-r class="min-w-0">
+          <div id="rv-view" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Guest reviews"
+            class="cursor-grab touch-pan-y select-none overflow-hidden outline-offset-4 active:cursor-grabbing">
+            <div id="rv-track" class="flex gap-6"></div>
+          </div>
+          <div class="mt-8 h-0.5 w-full bg-navy/15" aria-hidden="true">
+            <div id="rv-bar" class="h-full origin-left bg-preload" style="transform:scaleX(.2)"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="bg-preload/10 px-6 py-24">
+      <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div class="self-start lg:sticky lg:top-28">
+          <p data-r class="font-serif text-lg italic text-navy">Gallery</p>
+          <h2 data-r class="mt-1 font-serif text-4xl leading-tight md:text-5xl text-preload">Discover the Ombak
+            Experience</h2>
+          <p data-r class="mt-5 max-w-md text-sm leading-relaxed text-navy/75">A seamless journey through refined
+            spaces, coastal architecture, and thoughtfully crafted details.</p>
+          <p data-r class="mt-3 max-w-md text-sm leading-relaxed text-navy/70">Each scene reveals another layer of the
+            destination, capturing the balance between natural beauty and contemporary luxury. Designed to immerse
+            visitors in the atmosphere of NES_inn before they even arrive.</p>
+        </div>
+        <div id="g-track" class="flex flex-col gap-10"></div>
+      </div>
+    </section>
+
+    <!-- FEATURE GALLERY (pinned) -->
+    <section id="fg" class="relative h-[100svh] overflow-hidden bg-deep text-white" aria-label="Feature gallery">
+      <div id="fg-slides" class="absolute inset-0"></div>
+      <div class="absolute inset-0 bg-deep/45"></div>
+      <div class="relative z-10 flex h-full flex-col items-center justify-between px-6 py-24 text-center">
+        <p class="text-xs tracking-widest"><span id="fg-cur">01</span> — <span id="fg-tot">06</span></p>
+        <div id="fg-card" class="w-full max-w-xs bg-cream p-4 text-navy shadow-2xl">
+          <p id="fg-eye" class="font-serif text-lg italic text-preload"></p>
+          <h2 id="fg-title" class="font-serif text-3xl leading-tight"></h2>
+          <div class="ph mt-3 aspect-[4/3] overflow-hidden"><img id="fg-img" alt="" class="h-full w-full object-cover">
+          </div>
+          <p id="fg-text" class="mt-3 text-sm text-navy/70"></p>
+        </div>
+        <button id="fg-skip" type="button"
+          class="flex items-center gap-1 text-xs tracking-widest transition hover:text-gold"
+          aria-label="Skip feature gallery">SKIP <i data-lucide="chevron-right" class="h-4 w-4"></i></button>
+      </div>
+      <div class="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-4 text-xs tracking-widest">
+        <button id="fg-prev" type="button" class="transition hover:text-gold" aria-label="Previous slide">PREV</button>
+        <div class="h-px w-40 bg-white/30">
+          <div id="fg-fill" class="h-px origin-left bg-white"></div>
+        </div>
+        <button id="fg-next" type="button" class="transition hover:text-gold" aria-label="Next slide">NEXT</button>
+      </div>
+    </section>
+
+    <!-- GOOD TO KNOW / FAQ -->
+    <section id="faq" class="bg-cream px-6 py-24 md:px-12 md:py-32">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center">
+          <p data-r class="font-serif text-lg italic text-navy">Good to Know</p>
+          <h2 class="mx-auto mt-1 max-w-2xl font-serif text-4xl text-preload md:text-5xl">Everything You Need Before You
+            Arrive</h2>
+          <p data-r class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-navy/70 md:text-base">Quick answers about
+            your stay, our facilities, and how booking works.</p>
+        </div>
+
+        <div id="faq-facts" data-r
+          class="mt-14 grid grid-cols-2 gap-y-10 border-y border-navy/15 py-10 lg:grid-cols-4 lg:divide-x lg:divide-navy/15">
+        </div>
+
+        <div id="faq-groups" class="mt-6 divide-y divide-navy/15"></div>
+
+        <div data-r class="mt-6 flex flex-col items-center gap-4 border-t border-navy/15 pt-12 text-center">
+          <p class="font-serif text-2xl md:text-3xl">Still have a question?</p>
+          <p class="max-w-md text-sm leading-relaxed text-navy/70">Send us a message through the form below or write to
+            <a href="mailto:hello@nesinn.com"
+              class="underline underline-offset-4 transition hover:text-preload">hello@nesinn.com</a>,
+            and our team will be happy to help.
+          </p>
+          <a href="#register"
+            class="jump mt-2 inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-sm text-white transition hover:bg-navy">Contact
+            Us <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER -->
+    <!-- <section id="register" class="grid lg:grid-cols-2">
+      <div class="ph h-[360px] overflow-hidden lg:h-auto"><img data-img="9" alt="Tropical landscape"
+          class="h-full w-full object-cover" loading="lazy"></div>
+      <div class="px-6 py-16 md:px-16 lg:py-24">
+        <div class="mx-auto max-w-md">
+          <h2 class="font-serif text-4xl md:text-5xl">Take the First Step</h2>
+          <p class="mt-3 text-sm leading-relaxed text-navy/70">Become a member of NES_inn Club and take the first step
+            towards a life filled with purpose, wellness, and connection.</p>
+          <form id="rform" class="mt-8 space-y-5" novalidate>
+            <div><label for="r-name" class="text-xs text-navy/70">Full Name</label><input id="r-name" name="name"
+                required autocomplete="name" placeholder="Enter your name"
+                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
+            </div>
+            <div><label for="r-email" class="text-xs text-navy/70">Email Address</label><input id="r-email" name="email"
+                type="email" required autocomplete="email" placeholder="Enter your email address"
+                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
+            </div>
+            <div><label for="r-phone" class="text-xs text-navy/70">Phone Number</label>
+              <div class="mt-1 flex gap-3"><select name="cc" aria-label="Country code"
+                  class="border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
+                  <option>+1</option>
+                  <option>+60</option>
+                  <option selected>+62</option>
+                </select>
+                <input id="r-phone" name="phone" type="tel" required autocomplete="tel-national"
+                  placeholder="Enter your phone number"
+                  class="w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
+              </div>
+            </div>
+            <div><label for="r-country" class="text-xs text-navy/70">Country</label><select id="r-country"
+                name="country"
+                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
+                <option>United States</option>
+                <option>Malaysia</option>
+                <option selected>Indonesia</option>
+                <option>Singapore</option>
+              </select></div>
+            <label class="flex items-start gap-3 text-sm"><input type="checkbox" name="terms" required
+                class="mt-1 h-4 w-4 accent-[#d31c5e]"><span>I agree to the <span class="text-preload">Policies and
+                  Terms</span></span></label>
+            <button type="submit"
+              class="w-full rounded-full bg-preload py-3.5 text-sm text-white transition hover:bg-navy">Register
+              Now</button>
+            <p id="rmsg" class="min-h-5 text-sm" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section> -->
+  </main>
+
+  <footer class="bg-gradient-to-b from-preload/90 to-black/90 px-6 pb-8 pt-20 text-white">
+    <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.5fr_1fr]">
+      <div>
+        <p class="font-serif text-4xl">NES_inn HOTEL</p>
+        <p class="mt-4 max-w-sm leading-8 text-white/90">Beachfront living with understated coastal luxury, crafted for
+          slow mornings and elevated resort stays.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-8 text-sm">
+        <ul class="space-y-3">
+          <li class="text-white/50">Explore</li>
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Instagram</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Facebook</a></li>
+          <li><a href="https://www.google.com/maps" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Maps</a>
+          </li>
+        </ul>
+        <ul class="space-y-3">
+          <li class="text-white/50">Contact</li>
+          <li><a href="tel:+62111222333" class="transition hover:text-preload">+62 111 222 333</a></li>
+          <li><a href="mailto:hello@NES_inn.com" class="transition hover:text-preload">hello@NES_inn.com</a></li>
+          <li class="text-white/60">Raha, Sulawesi Tenggara, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="mx-auto mt-14 flex max-w-6xl flex-col gap-3 border-t border-white/10 pt-6 text-xs tracking-wide text-white/55 md:flex-row md:justify-between">
+      <p>Budget with nice athmosphere</p>
+      <p>© 2026 NES_inn HOTEL. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button id="totop" type="button"
+    class="pointer-events-none fixed bottom-6 right-6 z-30 flex flex-col items-center gap-2 bg-white/90 px-3 py-3 text-navy opacity-0 shadow-lg backdrop-blur"
+    aria-label="Back to top"><i data-lucide="chevron-up" class="h-4 w-4"></i><span
+      class="block h-10 w-px bg-navy/20"><span id="totop-p" class="block w-px origin-top bg-navy"
+        style="height:100%;transform:scaleY(0)"></span></span></button>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const P = { 1: '1540541338287-41700207dee6', 2: '1520250497591-112f2f40a3f4', 3: '1544161515-4ab6ce6db874', 4: '1534438327276-14e5300c3a48', 5: '1573843981267-be1999ff37cd', 6: '1507525428034-b723cf961d3e', 7: '1414235077428-338989a2e8c0', 8: '1551882547-ff40c63fe5fa', 9: '1537996194471-e657df975ab4', 10: '1602002418082-a4443e081dd1', 11: '1582719508461-905c673771fd', 12: '1566073771259-6a8506099945', 13: '1571896349842-33c89424de2d', 14: '1631049307264-da0ec9d70304', 15: '1584622650111-993a426fbf0a', 16: '1570077188670-e3a8d69ac5ff', 17: '1590490360182-c33d57733427' };
+    const img = (n, w = 1200) => `https://images.unsplash.com/photo-${P[n]}?auto=format&fit=crop&w=${w}&q=80`;
+
+    /* ---------- Render data-driven sections ---------- */
+    const PKG = [
+      [14, 'Romantic Escape', '2 Nights · Ocean View Suite', 'Rp 3.450.000', 'Rp 4.200.000', ['Daily breakfast for two', 'Candlelit beachfront dinner', '60-minute couples spa treatment'], 'Best Seller'],
+      [13, 'Family Fun Getaway', '3 Nights · Family Room', 'Rp 5.900.000', 'Rp 7.100.000', ['Breakfast for up to 4 guests', 'Play Garden and kids activity access', 'Complimentary late check-out'], 'Family'],
+      [3, 'Weekday Retreat', '2 Nights · Private Garden Villa', 'Rp 2.750.000', 'Rp 3.300.000', ['Daily breakfast and afternoon tea', 'Sunset cocktail by the pool', 'Free airport transfer'], 'Mon – Thu']
+    ];
+    const DISC = [
+      ['20%', 'Early Bird Offer', 'Book at least 30 days ahead and enjoy a better rate on every room type.', 'EARLYNES', 'Valid until 31 Mar 2027'],
+      ['15%', 'Long Stay Reward', 'Stay four nights or more and save on your entire booking.', 'STAY4PLUS', 'Valid until 30 Jun 2027'],
+      ['10%', 'Club Member Perk', 'Join NES_inn Club and unlock a member-only rate on every stay.', 'NESCLUB', 'Valid all year round']
+    ];
+    const EVT = [
+      [7, '24', 'Dec', 'Gastronomy', 'Christmas Eve Beachfront Dinner', 'A six-course seasonal menu paired with live acoustic music by the sea.', '7:00 PM', 'Terrace by the Sea', 'Rp 650.000 / person'],
+      [6, '31', 'Dec', 'Celebration', 'New Year’s Eve Countdown Gala', 'Welcome the new year with a festive buffet, DJ set, and a midnight fireworks view.', '8:00 PM', 'Pool Deck', 'Rp 850.000 / person'],
+      [4, '16', 'Jan', 'Live Music', 'Sunset Jazz & Wine Evening', 'Smooth jazz, curated wines, and golden hour over the ocean.', '5:30 PM', 'Lobby Lounge', 'Rp 350.000 / person']
+    ];
+
+    $('#promo-packages').innerHTML = PKG.map(p => `<article data-r class="group flex flex-col bg-white shadow-sm">
+      <div class="ph relative aspect-[4/3] overflow-hidden"><img data-img="${p[0]}" alt="${p[1]}" class="h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105" loading="lazy"><span class="absolute left-4 top-4 bg-preload px-3 py-1 text-[11px] font-medium uppercase tracking-[.2em] text-white">${p[6]}</span></div>
+      <div class="flex flex-1 flex-col p-6 text-left">
+        <p class="text-xs uppercase tracking-[.2em] text-gold">${p[2]}</p>
+        <h4 class="mt-2 font-serif text-3xl">${p[1]}</h4>
+        <ul class="mt-4 space-y-2 text-sm text-navy/75">${p[5].map(i => `<li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span>${i}</span></li>`).join('')}</ul>
+        <div class="mt-auto pt-6">
+          <div class="flex items-baseline gap-3 border-t border-navy/10 pt-5"><span class="font-serif text-3xl text-preload">${p[3]}</span><span class="text-sm text-navy/45 line-through">${p[4]}</span></div>
+          <p class="mt-1 text-xs text-navy/55">Per package, taxes included</p>
+          <a href="#register" class="jump mt-5 block rounded-full bg-preload py-3 text-center text-sm text-white transition hover:bg-navy">Book This Package</a>
+        </div>
+      </div>
+    </article>`).join('');
+
+    $('#promo-discounts').innerHTML = DISC.map(d => `<article data-r class="flex flex-col bg-white shadow-sm">
+      <div class="bg-preload px-6 py-9 text-center text-white"><p class="font-serif text-7xl leading-none">${d[0]}</p><p class="mt-3 text-xs tracking-[.4em]">OFF</p></div>
+      <div class="relative border-t-2 border-dashed border-preload/30" aria-hidden="true"><span class="absolute -left-3 -top-3 h-6 w-6 rounded-full bg-[#f8e6e9]"></span><span class="absolute -right-3 -top-3 h-6 w-6 rounded-full bg-[#f8e6e9]"></span></div>
+      <div class="flex flex-1 flex-col p-6 text-left">
+        <h4 class="font-serif text-2xl">${d[1]}</h4>
+        <p class="mt-2 text-sm leading-relaxed text-navy/70">${d[2]}</p>
+        <button type="button" data-code="${d[3]}" class="copy mt-auto flex w-full items-center justify-between border border-dashed border-navy/30 px-4 py-3 text-sm transition hover:border-preload hover:text-preload" aria-label="Copy promo code ${d[3]}"><span class="font-medium tracking-[.2em]">${d[3]}</span><span class="copy-l text-xs uppercase tracking-widest">Copy</span></button>
+        <p class="mt-3 text-xs text-navy/55">${d[4]}</p>
+      </div>
+    </article>`).join('');
+
+    $('#promo-events').innerHTML = EVT.map(e => `<article data-r class="group flex flex-col bg-white shadow-sm">
+      <div class="ph relative aspect-[16/10] overflow-hidden"><img data-img="${e[0]}" alt="${e[4]}" class="h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105" loading="lazy"><div class="absolute left-4 top-4 bg-cream px-3 py-2 text-center text-navy"><p class="font-serif text-3xl leading-none">${e[1]}</p><p class="mt-1 text-[11px] uppercase tracking-[.25em]">${e[2]}</p></div></div>
+      <div class="flex flex-1 flex-col p-6 text-left">
+        <p class="font-serif text-lg italic text-preload">${e[3]}</p>
+        <h4 class="mt-1 font-serif text-2xl leading-snug">${e[4]}</h4>
+        <p class="mt-3 text-sm leading-relaxed text-navy/70">${e[5]}</p>
+        <ul class="mt-4 space-y-2 text-sm text-navy/75">
+          <li class="flex items-center gap-2"><i data-lucide="clock" class="h-4 w-4 shrink-0 text-gold"></i>${e[6]}</li>
+          <li class="flex items-center gap-2"><i data-lucide="map-pin" class="h-4 w-4 shrink-0 text-gold"></i>${e[7]}</li>
+          <li class="flex items-center gap-2"><i data-lucide="ticket" class="h-4 w-4 shrink-0 text-gold"></i>${e[8]}</li>
+        </ul>
+        <a href="#register" class="jump mt-auto inline-flex items-center gap-2 self-start border-b border-navy pb-1 pt-6 text-sm transition hover:border-preload hover:text-preload">Reserve a Spot <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+      </div>
+    </article>`).join('');
+
+    /* Promo code copy */
+    function copyText(t) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+      return new Promise((res, rej) => {
+        const a = document.createElement('textarea');
+        a.value = t; a.style.position = 'fixed'; a.style.opacity = '0';
+        document.body.appendChild(a); a.select();
+        try { document.execCommand('copy') ? res() : rej(); } catch (err) { rej(err); }
+        a.remove();
+      });
+    }
+    document.addEventListener('click', e => {
+      const b = e.target.closest('.copy'); if (!b) return;
+      const l = b.querySelector('.copy-l');
+      const say = msg => { l.textContent = msg; clearTimeout(b._t); b._t = setTimeout(() => l.textContent = 'Copy', 1800); };
+      copyText(b.dataset.code).then(() => say('Copied')).catch(() => say('Copy failed'));
+    });
+
+    const GAL = [[2, '01 / Arrival', 'Coastal Horizon', 'A first impression shaped by open skies, quiet water, and soft architectural lines.'], [5, '02 / Leisure', 'Resort Light', 'Sun-washed amenities and framed ocean views create an effortless rhythm throughout the day.'], [11, '03 / Stay', 'Private Calm', 'Refined materials, warm textures, and generous space bring a more intimate residential feel.'], [8, '04 / Restore', 'Wellness Mood', 'The journey closes with spaces that feel slow, grounded, and deeply restorative.']];
+    $('#g-track').innerHTML = GAL.map(g => `<figure data-r class="bg-white"><div class="rimg ph aspect-[4/3] overflow-hidden"><img data-img="${g[0]}" alt="${g[2]}" class="par h-[118%] w-full object-cover" loading="lazy"></div><figcaption class="p-5"><p class="text-xs text-preload">${g[1]}</p><h3 class="font-serif text-2xl">${g[2]}</h3><p class="mt-1 text-sm text-navy/70">${g[3]}</p></figcaption></figure>`).join('');
+
+    /* Estimasi jarak & waktu tempuh dari hotel — sesuaikan dengan lokasi asli */
+    const LOC = [
+      ['store', 'Town', 'Raha City Center', 'Local cafés, shops, and traditional Muna woven fabrics close at hand.', '10', '4'],
+      ['ship', 'Getting Here', 'Raha Nusantara Port', 'Ferry connections from Kendari, about four hours across the strait.', '10', '5'],
+      ['plane', 'Getting Here', 'Sugimanuru Airport (RAQ)', 'Flights from Makassar, with private transfer available on request.', '40', '30'],
+      ['mountain', 'Nature', 'Puncak Wakila', 'A hilltop viewpoint with sweeping views over Raha and the Buton Strait.', '20', '10'],
+      ['waves', 'Nature', 'Danau Napabale', 'A saltwater lake joined to the sea by a natural tunnel, with boat rides.', '30', '25'],
+      ['tree-palm', 'Nature', 'Pantai Meleura', 'A coastal beach on Muna, ideal for an easy half-day outing.', '35', '28'],
+      ['landmark', 'Culture', 'Liang Kabori & Metanduno Caves', 'Prehistoric cave paintings tucked into the limestone hills of northern Muna.', '45', '32']
+    ];
+    $('#loc-list').innerHTML = LOC.map(l => `<li data-r class="group grid grid-cols-[1fr_auto] items-start gap-4 border-b border-navy/15 py-6 sm:grid-cols-[auto_1fr_auto] md:gap-6">
+      <span class="hidden h-12 w-12 items-center justify-center rounded-full border border-navy/20 text-gold transition duration-500 group-hover:border-preload group-hover:bg-preload group-hover:text-white sm:flex"><i data-lucide="${l[0]}" class="h-5 w-5" stroke-width="1.4"></i></span>
+      <div>
+        <p class="text-xs uppercase tracking-[.2em] text-gold">${l[1]}</p>
+        <h4 class="mt-1 font-serif text-2xl transition group-hover:text-preload md:text-3xl">${l[2]}</h4>
+        <p class="mt-1 max-w-md text-sm leading-relaxed text-navy/70">${l[3]}</p>
+      </div>
+      <div class="text-right">
+        <p class="font-serif text-4xl leading-none text-preload">~${l[4]}</p>
+        <p class="mt-1 text-xs uppercase tracking-widest text-navy/55">min</p>
+        <p class="mt-2 text-xs text-navy/55">≈ ${l[5]} km</p>
+      </div>
+    </li>`).join('');
+
+    /* ---------- Guest reviews slider ---------- */
+    /* CONTOH ulasan — ganti dengan ulasan asli tamu: [nama, asal, jenis menginap, rating 1–5, bulan, isi ulasan] */
+    const REV = [
+      ['Andi Pratama', 'Kendari', 'Business trip', 5, 'October 2026', 'The room was spotless, the staff remembered my name by the second day, and breakfast was served right on time. Easily the most relaxing business trip I have had.'],
+      ['Sari Wulandari', 'Makassar', 'Family stay', 5, 'September 2026', 'We came with two kids and everyone was looked after. The pool was clean and the family room had plenty of space. We are already planning to come back.'],
+      ['Daniel & Maya', 'Jakarta', 'Couple getaway', 5, 'September 2026', 'Waking up to the sea breeze was the highlight. The candlelit dinner on the terrace felt special without being over the top. Perfect for a quiet escape.'],
+      ['Rizal Hakim', 'Baubau', 'Weekend stay', 4, 'August 2026', 'Great value for the comfort you get. The location is easy to reach and the team helped us arrange a trip to Napabale. I only wish check-out was a little later.'],
+      ['Hannah Müller', 'Berlin, Germany', 'Traveller', 5, 'August 2026', 'A calm, friendly place after a long journey through Sulawesi. Clean, quiet, and the breakfast had lovely local flavours. The team gave excellent sightseeing tips.'],
+      ['La Ode Surya', 'Raha', 'Staycation', 4, 'July 2026', 'We booked a staycation for our anniversary and it did not disappoint. Attentive service and a very peaceful atmosphere. I will recommend it to friends.']
+    ];
+    const rvStars = (n, size) => [1, 2, 3, 4, 5].map(k => `<i data-lucide="star" class="${size} ${k <= n ? 'fill-gold text-gold' : 'text-navy/25'}" stroke-width="1.4"></i>`).join('');
+    const rvAvg = REV.reduce((s, r) => s + r[3], 0) / REV.length;
+    $('#rv-avg').textContent = rvAvg.toFixed(1);
+    $('#rv-stars').innerHTML = rvStars(Math.round(rvAvg), 'h-5 w-5');
+    $('#rv-count').textContent = `Based on ${REV.length} guest reviews`;
+    $('#rv-track').innerHTML = REV.map((r, n) => `<figure class="flex flex-none flex-col bg-white p-8 shadow-sm md:p-10" role="group" aria-roledescription="slide" aria-label="${n + 1} of ${REV.length}">
+      <i data-lucide="quote" class="h-9 w-9 text-gold" stroke-width="1.2"></i>
+      <div class="mt-5 flex gap-1" aria-label="Rated ${r[3]} out of 5">${rvStars(r[3], 'h-4 w-4')}</div>
+      <blockquote class="mt-5 flex-1 font-serif text-xl leading-relaxed md:text-2xl">“${r[5]}”</blockquote>
+      <figcaption class="mt-8 flex items-center gap-4 border-t border-navy/10 pt-6">
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-preload font-serif text-lg text-white" aria-hidden="true">${r[0].split(/\s+/).filter(w => /^\p{L}/u.test(w)).slice(0, 2).map(w => w[0]).join('')}</span>
+        <div><p class="font-medium">${r[0]}</p><p class="text-xs text-navy/60">${r[1]} · ${r[2]}</p></div>
+        <p class="ml-auto pl-2 text-right text-xs text-navy/50">${r[4]}</p>
+      </figcaption>
+    </figure>`).join('');
+
+    (() => {
+      const view = $('#rv-view'), track = $('#rv-track'), bar = $('#rv-bar'), num = $('#rv-num');
+      const slides = [...track.children];
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pad = n => String(n).padStart(2, '0');
+      let i = 0, step = 0, timer = null, paused = false, inView = false;
+      const per = () => innerWidth >= 768 ? 2 : 1;
+      const max = () => Math.max(0, slides.length - per());
+      const ui = () => {
+        num.textContent = `${pad(i + 1)} / ${pad(max() + 1)}`;
+        gsap.to(bar, { scaleX: (i + 1) / (max() + 1), duration: .6, ease: 'power2.out' });
+      };
+      const go = (n, d = .9) => {
+        i = Math.min(Math.max(n, 0), max());
+        gsap.to(track, { x: -i * step, duration: d, ease: 'power3.out', overwrite: true });
+        ui();
+      };
+      const next = () => go(i >= max() ? 0 : i + 1);
+      const prev = () => go(i <= 0 ? max() : i - 1);
+
+      /* Autoplay: berhenti saat hover/fokus, di luar layar, atau reduced-motion */
+      const stop = () => { clearTimeout(timer); timer = null; };
+      const play = () => {
+        stop();
+        if (reduce || paused || !inView) return;
+        timer = setTimeout(() => { next(); play(); }, 6000);
+      };
+      new IntersectionObserver(([e]) => { inView = e.isIntersecting; play(); }, { threshold: .3 }).observe(view);
+      view.addEventListener('pointerenter', () => { paused = true; stop(); });
+      view.addEventListener('pointerleave', () => { paused = false; play(); });
+      view.addEventListener('focusin', () => { paused = true; stop(); });
+      view.addEventListener('focusout', () => { paused = false; play(); });
+
+      /* Tombol & keyboard */
+      $('#rv-next').addEventListener('click', () => { next(); play(); });
+      $('#rv-prev').addEventListener('click', () => { prev(); play(); });
+      view.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') { next(); play(); }
+        else if (e.key === 'ArrowLeft') { prev(); play(); }
+      });
+
+      /* Drag / swipe */
+      let sx = 0, bx = 0, dx = 0, drag = false;
+      view.addEventListener('pointerdown', e => {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        drag = true; sx = e.clientX; dx = 0;
+        bx = gsap.getProperty(track, 'x');
+        gsap.killTweensOf(track); stop();
+      });
+      addEventListener('pointermove', e => {
+        if (!drag) return;
+        dx = e.clientX - sx;
+        gsap.set(track, { x: Math.min(60, Math.max(-max() * step - 60, bx + dx)) });
+      });
+      const end = () => {
+        if (!drag) return;
+        drag = false;
+        if (Math.abs(dx) > step * .18) go(dx < 0 ? i + 1 : i - 1); else go(i, .6);
+        play();
+      };
+      addEventListener('pointerup', end);
+      addEventListener('pointercancel', end);
+
+      /* Ukuran slide mengikuti lebar viewport slider */
+      const layout = () => {
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 24;
+        const w = (view.clientWidth - gap * (per() - 1)) / per();
+        slides.forEach(s => { s.style.width = w + 'px'; });
+        step = w + gap;
+        i = Math.min(i, max());
+        gsap.set(track, { x: -i * step });
+        ui();
+      };
+      new ResizeObserver(layout).observe(view);
+      layout();
+    })();
+
+    /* ---------- Good to Know / FAQ ---------- */
+    /* CONTOH kebijakan — sesuaikan dengan aturan asli hotel */
+    const FACTS = [
+      ['log-in', 'Check-in', 'From 2:00 PM'],
+      ['log-out', 'Check-out', 'Until 12:00 PM'],
+      ['coffee', 'Breakfast', '6:30 – 10:00 AM'],
+      ['wifi', 'Wi-Fi', 'Free in all areas']
+    ];
+    const FAQ = [
+      {
+        icon: 'bed-double', title: 'Your Stay', sub: 'Arrival, parking, and getting around.',
+        items: [
+          ['What are the check-in and check-out times?', 'Check-in starts at 2:00 PM and check-out is until 12:00 PM. Early check-in and late check-out are subject to availability, so please let our front desk know in advance.'],
+          ['Can I store my luggage?', 'Yes. We keep your bags safe free of charge before check-in and after check-out, so you can enjoy Raha at your own pace.'],
+          ['Is parking available?', 'Free on-site parking is available for all in-house guests on a first-come, first-served basis.'],
+          ['Can you arrange airport or port transfers?', 'Transfers from Sugimanuru Airport and Raha Nusantara Port can be arranged on request. Airport transfer is included in the Weekday Retreat package.'],
+          ['Are children and pets welcome?', 'Children are very welcome, and an extra bed can be added on request for an additional charge. For the comfort of all guests, pets are not allowed.']
+        ]
+      },
+      {
+        icon: 'utensils', title: 'Dining & Facilities', sub: 'Meals, connectivity, and what you can enjoy on site.',
+        items: [
+          ['Is breakfast included?', 'Breakfast is included in our stay packages and can be added to any room rate. It is served daily from 6:30 to 10:00 AM.'],
+          ['Is there Wi-Fi?', 'Yes. Complimentary Wi-Fi is available in all rooms and public areas.'],
+          ['Which facilities can I use?', 'In-house guests may use the facilities listed in our Facilities section. Opening hours may vary by day, so ask our team on arrival for today’s schedule.'],
+          ['Can you accommodate dietary needs?', 'Absolutely. Please tell us about any allergies or dietary preferences when you book, and our kitchen will prepare suitable options for you.']
+        ]
+      },
+      {
+        icon: 'credit-card', title: 'Booking & Payment', sub: 'Reservations, payments, and flexible changes.',
+        items: [
+          ['How do I make a reservation?', 'Fill in the registration form below with your dates and preferences, and our team will get back to you to confirm your booking.'],
+          ['Which payment methods do you accept?', 'We accept cash, bank transfer, and major debit and credit cards. Payment details are shared when your booking is confirmed.'],
+          ['What is your cancellation policy?', 'You can cancel free of charge up to 3 days before arrival. Later cancellations or no-shows may be charged for the first night.'],
+          ['Can I use a promo code?', 'Yes. Mention your code from our Promo section in the registration form. Only one code can be used per booking, and offers cannot be combined unless stated.']
+        ]
+      }
+    ];
+
+    $('#faq-facts').innerHTML = FACTS.map(f => `<div class="px-4 text-center">
+      <i data-lucide="${f[0]}" class="mx-auto h-7 w-7 text-gold" stroke-width="1.2"></i>
+      <p class="mt-4 text-xs uppercase tracking-[.25em] text-navy/55">${f[1]}</p>
+      <p class="mt-1 font-serif text-2xl md:text-3xl">${f[2]}</p>
+    </div>`).join('');
+
+    $('#faq-groups').innerHTML = FAQ.map((g, gi) => `<div data-r class="grid gap-6 py-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-16">
+      <div>
+        <i data-lucide="${g.icon}" class="h-8 w-8 text-gold" stroke-width="1.2"></i>
+        <h3 class="mt-4 font-serif text-3xl md:text-4xl">${g.title}</h3>
+        <p class="mt-2 max-w-xs text-sm leading-relaxed text-navy/70">${g.sub}</p>
+      </div>
+      <div class="faq-g border-t border-navy/15">${g.items.map((it, ii) => `<div class="border-b border-navy/15">
+        <h4><button type="button" id="fq-b-${gi}-${ii}" aria-expanded="false" aria-controls="fq-p-${gi}-${ii}" class="fq-b flex w-full items-center justify-between gap-6 py-5 text-left font-serif text-xl transition hover:text-preload md:text-2xl"><span>${it[0]}</span><span class="fq-i flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy/25 transition-colors duration-300"><i data-lucide="plus" class="h-4 w-4"></i></span></button></h4>
+        <div id="fq-p-${gi}-${ii}" role="region" aria-labelledby="fq-b-${gi}-${ii}" class="h-0 overflow-hidden" style="visibility:hidden"><p class="pb-6 pr-12 text-sm leading-relaxed text-navy/70 md:text-base">${it[1]}</p></div>
+      </div>`).join('')}</div>
+    </div>`).join('');
+
+    (() => {
+      const noMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const setState = (b, open, instant) => {
+        const p = document.getElementById(b.getAttribute('aria-controls')), ic = b.querySelector('.fq-i');
+        const d = instant || noMotion ? 0 : .5;
+        b.setAttribute('aria-expanded', open);
+        ['bg-preload', 'border-preload', 'text-white'].forEach(c => ic.classList.toggle(c, open));
+        gsap.killTweensOf([p, ic]);
+        gsap.to(ic, { rotation: open ? 45 : 0, duration: d, ease: 'power3.out' });
+        if (open) {
+          p.style.visibility = 'visible';
+          gsap.to(p, { height: 'auto', duration: d, ease: 'power3.out', onComplete: () => ScrollTrigger.refresh() });
+        } else {
+          gsap.to(p, { height: 0, duration: d, ease: 'power3.inOut', onComplete: () => { p.style.visibility = 'hidden'; ScrollTrigger.refresh(); } });
+        }
+      };
+      const btns = $$('.fq-b');
+      btns.forEach(b => b.addEventListener('click', () => {
+        const open = b.getAttribute('aria-expanded') !== 'true';
+        if (open) b.closest('.faq-g').querySelectorAll('.fq-b[aria-expanded="true"]').forEach(o => { if (o !== b) setState(o, false); });
+        setState(b, open);
+      }));
+      setState(btns[0], true, true);
+    })();
+
+    $$('[data-img]').forEach(el => el.src = img(el.dataset.img));
+
+    /* ---------- Smooth scroll ---------- */
+    const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+    lucide.createIcons();
+
+    /* ---------- Navbar states + mobile menu ---------- */
+    const burgers = $$('.burger'), menu = $('#mmenu'), topbar = $('#topbar'), navbar = $('#navbar');
+    gsap.set(navbar, { yPercent: -100, autoAlpha: 0 });
+    gsap.set(menu, { clipPath: 'inset(0 0 100% 0)' });
+    gsap.set('.ml', { yPercent: 110 });
+    gsap.set('.mf', { opacity: 0, y: 20 });
+    const mTl = gsap.timeline({ paused: true, defaults: { ease: 'power4.inOut' }, onReverseComplete: () => gsap.set(menu, { visibility: 'hidden' }) })
+      .set(menu, { visibility: 'visible' })
+      .to(menu, { clipPath: 'inset(0 0 0% 0)', duration: reduce ? .01 : .9 })
+      .to('.ml', { yPercent: 0, duration: reduce ? .01 : .8, stagger: .07, ease: 'power3.out' }, '-=.45')
+      .to('.mf', { opacity: 1, y: 0, duration: .5, ease: 'power2.out' }, '-=.4');
+    let open = false, ready = false;
+    function setMenu(v) {
+      if (v === open) return;
+      open = v;
+      document.body.classList.toggle('mo', v);
+      burgers.forEach(b => { b.classList.toggle('menu-open', v); b.setAttribute('aria-expanded', v); b.setAttribute('aria-label', v ? 'Close menu' : 'Open menu'); });
+      menu.setAttribute('aria-hidden', !v);
+      if (v) { lenis.stop(); mTl.timeScale(1).play(); } else { mTl.timeScale(1.4).reverse(); if (ready) lenis.start(); }
+    }
+    burgers.forEach(b => b.addEventListener('click', () => setMenu(!open)));
+    addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
+    addEventListener('resize', () => innerWidth >= 1024 && setMenu(false));
+    $$('a.jump').forEach(a => a.addEventListener('click', e => {
+      const t = $(a.getAttribute('href')); if (!t) return;
+      e.preventDefault();
+      const was = open; setMenu(false);
+      setTimeout(() => lenis.scrollTo(t, { duration: 1.4 }), was ? 500 : 0);
+    }));
+    /* Layout + menu swap the moment the user scrolls down */
+    function bar(on) {
+      gsap.to(navbar, { yPercent: on ? 0 : -100, autoAlpha: on ? 1 : 0, duration: .45, ease: 'power3.out', overwrite: true });
+      gsap.to(topbar, { autoAlpha: on ? 0 : 1, duration: .25, overwrite: true });
+    }
+    ScrollTrigger.create({ start: 40, end: 'max', onEnter: () => bar(true), onLeaveBack: () => bar(false) });
+
+    /* ---------- Hero slider ---------- */
+    const HS = [[1, 'The Arrival'], [9, 'Coastal Living'], [17, 'Ocean View']];
+    $('#slides').innerHTML = HS.map(h => `<img src="${img(h[0], 2000)}" alt="${h[1]}" class="hs absolute inset-0 h-full w-full object-cover opacity-0">`).join('');
+    const hs = $$('.hs'); let hi = 0, hProg;
+    function hGo(n, first) {
+      const old = hi; hi = (n + hs.length) % hs.length;
+      if (!first) gsap.to(hs[old], { opacity: 0, duration: 1.4, ease: 'power2.inOut' });
+      gsap.fromTo(hs[hi], { opacity: first ? 1 : 0, scale: 1.12 }, { opacity: 1, scale: 1, duration: 2.2, ease: 'power2.out' });
+      $('#h-cur').textContent = String(hi + 1).padStart(2, '0');
+      gsap.fromTo('#h-title', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .8, delay: .3 });
+      $('#h-title').textContent = HS[hi][1];
+      hProg && hProg.kill();
+      hProg = gsap.fromTo('#h-prog', { scaleX: 0 }, { scaleX: 1, duration: 6, ease: 'none', onComplete: () => hGo(hi + 1) });
+    }
+    $('#h-tot').textContent = String(hs.length).padStart(2, '0');
+    $('#h-prev').onclick = () => hGo(hi - 1);
+    $('#h-next').onclick = () => hGo(hi + 1);
+
+    /* ---------- Facilities tabs ---------- */
+    const TABS = [['Infinity Pool', 'Dive into our stunning infinity pool overlooking the ocean. The perfect spot to watch the sunset with a cocktail in hand.', 5], ['Spa & Wellness', 'Relax and unwind with our signature massage treatments using organic local ingredients.', 3], ['Fitness Center', 'Stay active during your vacation in our state-of-the-art gym equipped with the latest machines.', 4]];
+    $('#tabs').innerHTML = TABS.map((t, i) => `<button role="tab" id="tab-${i}" data-i="${i}" aria-selected="${i === 0}" class="tab -mb-px whitespace-nowrap border-b pb-3 ${i === 0 ? 'border-navy' : 'border-transparent text-navy/55'}">${t[0]}</button>`).join('');
+    function showTab(i, animate) {
+      const t = TABS[i];
+      const fill = () => { $('#p-title').textContent = t[0]; $('#p-text').textContent = t[1]; $('#p-img').src = img(t[2], 1000); $('#p-img').alt = t[0]; $('#panel').setAttribute('aria-labelledby', 'tab-' + i); };
+      $$('.tab').forEach((b, k) => { const on = k === i; b.setAttribute('aria-selected', on); b.classList.toggle('border-navy', on); b.classList.toggle('border-transparent', !on); b.classList.toggle('text-navy/55', !on); });
+      if (!animate) return fill();
+      gsap.timeline().to('#panel', { opacity: 0, y: 10, duration: .25 }).add(fill).to('#panel', { opacity: 1, y: 0, duration: .45, ease: 'power2.out' });
+    }
+    $$('.tab').forEach(b => b.addEventListener('click', () => showTab(+b.dataset.i, true)));
+    showTab(0, false);
+
+    /* ---------- Feature gallery (pinned scroll) ---------- */
+    const FS = [[2, 'Gallery', 'Pool', 'Pool'], [5, 'Ground Floor', 'Aegean Falls Cascading Pool', 'Aegean Falls Cascading Pool @ Ground Floor'], [1, 'Ground Floor', 'The Arrival', 'The Arrival @ Ground Floor'], [12, 'Ground Floor', 'Lobby Reception', 'Lobby Reception @ Ground Floor'], [11, 'Level 8', 'The Play Garden', 'The Play Garden @ Level 8'], [8, 'Level 8', 'Terrace by the Sea BBQ Pit & Lounge', 'Terrace by the Sea BBQ Pit & Lounge @ Level 8']];
+    $('#fg-slides').innerHTML = FS.map((f, i) => `<img src="${img(f[0], 1800)}" alt="${f[2]}" class="fs absolute inset-0 h-full w-full object-cover" style="opacity:${i ? 0 : 1}" loading="lazy">`).join('');
+    $('#fg-tot').textContent = String(FS.length).padStart(2, '0');
+    const fs = $$('.fs'); let fi = -1;
+    function setF(i) {
+      if (i === fi) return;
+      const prev = fi; fi = i;
+      fs.forEach((s, k) => gsap.to(s, { opacity: k === i ? 1 : 0, duration: .8, overwrite: true }));
+      $('#fg-cur').textContent = String(i + 1).padStart(2, '0');
+      const f = FS[i];
+      gsap.timeline().to('#fg-card', { opacity: prev < 0 ? 1 : 0, y: prev < 0 ? 0 : 8, duration: .2 })
+        .add(() => { $('#fg-eye').textContent = f[1]; $('#fg-title').textContent = f[2]; $('#fg-img').src = img(f[0], 700); $('#fg-img').alt = f[2]; $('#fg-text').textContent = f[3]; })
+        .to('#fg-card', { opacity: 1, y: 0, duration: .4 });
+    }
+    setF(0);
+    const fgST = ScrollTrigger.create({
+      trigger: '#fg', start: 'top top', end: () => '+=' + innerHeight * (FS.length - 1), pin: true, scrub: true,
+      onUpdate: s => { setF(Math.round(s.progress * (FS.length - 1))); gsap.set('#fg-fill', { scaleX: s.progress }); }
+    });
+    const fgGo = i => lenis.scrollTo(fgST.start + Math.max(0, Math.min(FS.length - 1, i)) / (FS.length - 1) * (fgST.end - fgST.start) + 1, { duration: 1.2 });
+    $('#fg-prev').onclick = () => fgGo(fi - 1);
+    $('#fg-next').onclick = () => fgGo(fi + 1);
+    $('#fg-skip').onclick = () => lenis.scrollTo(fgST.end + 2, { duration: 1.4 });
+
+    /* ---------- Register form ---------- */
+    // $('#rform').addEventListener('submit', e => {
+    //   e.preventDefault();
+    //   const f = e.target, m = $('#rmsg');
+    //   if (!f.checkValidity()) { f.reportValidity(); m.textContent = 'Complete all fields and accept the terms to register.'; m.className = 'min-h-5 text-sm text-red-700'; return; }
+    //   m.textContent = 'Thank you, ' + f.name.value.trim() + '. Your registration has been received.'; m.className = 'min-h-5 text-sm text-emerald-800'; f.reset();
+    // });
+
+    /* ---------- Scroll effects ---------- */
+    // Headings: words rise out of a mask
+    $$('main h2:not(#fg-title)').forEach(el => {
+      el.innerHTML = el.textContent.trim().split(/\s+/).map(w => `<span class="inline-block overflow-hidden pb-[.14em] -mb-[.14em] align-bottom"><span class="sw inline-block">${w}</span></span>`).join(' ');
+      el.removeAttribute('data-r');
+      gsap.from(el.querySelectorAll('.sw'), { yPercent: 115, rotate: 4, transformOrigin: 'left bottom', duration: 1.2, stagger: .09, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+    // Text, cards and icons: batched, staggered entrance
+    gsap.set('[data-r]', { y: 40, opacity: 0 });
+    ScrollTrigger.batch('[data-r]', { start: 'top 90%', once: true, onEnter: b => gsap.to(b, { y: 0, opacity: 1, duration: 1.1, stagger: .14, ease: 'power3.out' }) });
+    // Images: curtain wipe + settling zoom
+    $$('.rimg, #facilities > div:first-child, #register > div:first-child').forEach(el => {
+      gsap.fromTo(el, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.5, ease: 'power4.inOut', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+      const im = el.querySelector('img');
+      if (im) gsap.from(im, { scale: 1.3, duration: 1.9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+    });
+    // Images: scroll-linked parallax
+    $$('.par').forEach(im => gsap.fromTo(im, { yPercent: 0 }, { yPercent: -12, ease: 'none', scrollTrigger: { trigger: im.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+    // Hero: content drifts and fades, background zooms as you leave
+    gsap.to('#hero-c', { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom 30%', scrub: true } });
+    gsap.to('#hero-b', { opacity: 0, ease: 'none', scrollTrigger: { trigger: '#home', start: 'top top', end: '35% top', scrub: true } });
+    gsap.to('#slides', { yPercent: 12, scale: 1.08, ease: 'none', scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: true } });
+    ScrollTrigger.create({
+      start: 0, end: 'max', onUpdate: s => {
+        gsap.set('#totop-p', { scaleY: s.progress });
+        const show = s.scroll() > 700;
+        gsap.to('#totop', { opacity: show ? 1 : 0, duration: .3, onStart: () => $('#totop').style.pointerEvents = show ? 'auto' : 'none' });
+      }
+    });
+    $('#totop').onclick = () => lenis.scrollTo(0, { duration: 1.6 });
+
+    /* ---------- Preloader + intro ---------- */
+    addEventListener('load', () => {
+      gsap.timeline({ onComplete: () => { $('#preloader').remove(); ready = true; if (!open) lenis.start(); ScrollTrigger.refresh(); } })
+        .from('#pl-line', { scaleX: 0, duration: reduce ? .01 : 1.1, ease: 'power2.inOut' })
+        .to('#preloader', { yPercent: -100, duration: reduce ? .01 : .9, ease: 'power4.inOut' })
+        .add(() => hGo(0, true), '-=.5')
+        .from('.hi', { y: 36, opacity: 0, duration: 1.1, stagger: .15, ease: 'power3.out' }, '-=.4');
+    });
+  </script>
+</body>
+
+</html>

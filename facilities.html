@@ -96,20 +96,21 @@
   <!-- Navbar -->
   <header id="nav" class="fixed inset-x-0 top-0 z-50 text-white">
     <div class="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
-      <a href="index.html" class="logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)]"
+      <a href="./index.html" class="logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)]"
         aria-label="NES_inn home"><img src="./img/nesinn_logo.jpeg" alt="" width="50" height="50"
           onerror="this.remove()">NES_inn</a>
-      <ul class="hidden items-center gap-10 text-[15px] font-medium tracking-wide lg:flex" aria-label="Main navigation">
-        <li><a class="transition hover:text-preload" href="/index.html">Home</a></li>
-        <li><a class="transition hover:text-preload" href="/rooms.html">Rooms</a></li>
-        <li><a class="jump border-b border-current pb-1" href="/facilities.html" aria-current="page">Facilities</a></li>
-        <li><a class="transition hover:text-preload" href="/promo.html">Promo</a></li>
-        <li><a class="transition hover:text-preload" href="/index.html#gallery">Gallery</a></li>
-        <li><a class="transition hover:text-preload" href="/index.html#reviews">Reviews</a></li>
-        <li><a class="transition hover:text-preload" href="/index.html#location">Location</a></li>
+      <ul class="hidden items-center gap-7 text-[15px] font-medium tracking-wide lg:flex xl:gap-10"
+        aria-label="Main navigation">
+        <li><a class="transition hover:text-preload" href="./index.html">Home</a></li>
+        <li><a class="transition hover:text-preload" href="./rooms.html">Rooms</a></li>
+        <li><a class="jump border-b border-current text-preload pb-1" href="#top">Facilities</a></li>
+        <li><a class="transition hover:text-preload" href="./promo.html">Promo</a></li>
+        <li><a class="transition hover:text-preload" href="./index.html#gallery">Gallery</a></li>
+        <li><a class="transition hover:text-preload" href="./index.html#reviews">Reviews</a></li>
+        <li><a class="transition hover:text-preload" href="./index.html#location">Location</a></li>
       </ul>
       <a class="hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy lg:inline-block"
-        href="index.html#register">Contact Us</a>
+        href="#" data-wa="contact">Contact Us</a>
       <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
         aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
           class="relative block h-[14px] w-6"><span
@@ -120,20 +121,25 @@
   </header>
 
   <div id="mmenu"
-    class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
+    class="overflow-y-auto invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
     aria-hidden="true">
     <ul class="flex flex-col">
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html">Home</a></li>
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="/rooms.html">Rooms</a></li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl text-preload"
-          href="/facilities.html">Facilities</a></li>
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="promo.html">Promo</a></li>
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#gallery">Gallery</a>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./index.html">Home</a>
       </li>
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#location">Location</a>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./rooms.html">Rooms</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl text-preload sm:text-5xl"
+          href="#top">Facilities</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./promo.html">Promo</a>
       </li>
-      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-5xl" href="index.html#register">Contact
-          Us</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./index.html#gallery">Gallery</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./index.html#location">Location</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl" href="#"
+          data-wa="contact">Contact Us</a></li>
     </ul>
     <div class="mf text-sm text-white/65">
       <div class="mb-4 flex gap-5"><i data-lucide="message-circle" class="h-5 w-5"></i><i data-lucide="instagram"
@@ -150,7 +156,7 @@
       <div class="absolute inset-0 bg-[#0b2a45]/55"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071c30]/70"></div>
       <div class="relative z-10 mx-auto w-full max-w-6xl px-6 pb-14 md:pb-20">
-        <nav aria-label="Breadcrumb" class="hi text-xs uppercase tracking-[.3em] text-white/75"><a href="index.html"
+        <nav aria-label="Breadcrumb" class="hi text-xs uppercase tracking-[.3em] text-white/75"><a href="./index.html"
             class="transition hover:text-gilt">Home</a><span class="mx-3">/</span><span
             class="text-gilt">Facilities</span></nav>
         <h1 id="fc-h1" class="mt-5 font-serif text-5xl font-medium md:text-8xl">Our Facilities</h1>
@@ -191,10 +197,10 @@
         <p data-r class="mt-5 text-sm leading-relaxed text-white/75 md:text-base">Our stay packages bring the pool,
           spa, dining, and family spaces together at a better rate.</p>
         <div data-r class="mt-10 flex flex-wrap items-center justify-center gap-4 text-sm">
-          <a href="promo.html"
+          <a href="./promo.html"
             class="inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-white transition hover:bg-white hover:text-navy">See
             Stay Packages <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
-          <a href="index.html#register"
+          <a href="#" data-wa="contact"
             class="inline-flex items-center gap-2 rounded-full border border-white/40 px-8 py-3 transition hover:border-gilt hover:text-gilt">Contact
             Us</a>
         </div>
@@ -245,6 +251,30 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
     const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    /* ---------- WhatsApp direct (0852-4249-0262) ---------- */
+    const WA_NUM = '6285242490262';
+    const WA_FORMS = {
+      contact: { intro: 'Saya ingin bertanya mengenai informasi hotel.', label: 'Topik', fields: ['Nama lengkap', 'Pertanyaan'] },
+      book: { intro: 'Saya ingin melakukan reservasi kamar.', label: 'Kamar / paket', fields: ['Nama lengkap', 'Tipe kamar', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu', 'Permintaan khusus'] },
+      room: { intro: 'Saya ingin memesan kamar berikut.', label: 'Tipe kamar', fields: ['Nama lengkap', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu', 'Permintaan khusus'] },
+      package: { intro: 'Saya tertarik dengan paket menginap berikut.', label: 'Paket', fields: ['Nama lengkap', 'Tanggal check-in', 'Jumlah tamu', 'Permintaan khusus'] },
+      event: { intro: 'Saya ingin melakukan reservasi untuk acara berikut.', label: 'Acara', fields: ['Nama lengkap', 'Jumlah tamu', 'Catatan'] },
+      discount: { intro: 'Saya ingin menggunakan promo berikut.', label: 'Promo', fields: ['Nama lengkap', 'Tipe kamar', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu'] },
+      facility: { intro: 'Saya ingin menginap dan mengetahui lebih lanjut tentang fasilitas hotel.', label: 'Fasilitas', fields: ['Nama lengkap', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu'] },
+      promo: { intro: 'Saya ingin mengetahui promo dan paket menginap yang tersedia.', label: 'Promo', fields: ['Nama lengkap', 'Rencana tanggal menginap', 'Jumlah tamu'] },
+      location: { intro: 'Saya ingin menanyakan lokasi dan petunjuk arah menuju hotel.', label: 'Topik', fields: ['Nama lengkap', 'Berangkat dari'] }
+    };
+    function waMsg(kind = 'contact', item = '', code = '') {
+      const f = WA_FORMS[kind] || WA_FORMS.contact;
+      const l = ['Halo NES_inn Hotel 👋', f.intro, ''];
+      if (item) l.push(`• ${f.label}: ${item}`);
+      if (code) l.push(`• Kode promo: ${code}`);
+      f.fields.forEach(x => l.push(`• ${x}: `));
+      l.push('', 'Terima kasih.');
+      return l.join('\n');
+    }
+    const waUrl = (kind, item, code) => `https://wa.me/${WA_NUM}?text=${encodeURIComponent(waMsg(kind, item, code))}`;
+    $$('a[data-wa]').forEach(a => { a.href = waUrl(a.dataset.wa, a.dataset.item, a.dataset.code); a.target = '_blank'; a.rel = 'noopener'; });
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const P = { 1: '1540541338287-41700207dee6', 2: '1520250497591-112f2f40a3f4', 3: '1544161515-4ab6ce6db874', 4: '1534438327276-14e5300c3a48', 5: '1573843981267-be1999ff37cd', 6: '1507525428034-b723cf961d3e', 7: '1414235077428-338989a2e8c0', 8: '1551882547-ff40c63fe5fa', 9: '1537996194471-e657df975ab4', 10: '1602002418082-a4443e081dd1', 11: '1582719508461-905c673771fd', 12: '1566073771259-6a8506099945', 13: '1571896349842-33c89424de2d', 14: '1631049307264-da0ec9d70304', 15: '1584622650111-993a426fbf0a', 16: '1570077188670-e3a8d69ac5ff', 17: '1590490360182-c33d57733427' };
     const img = (n, w = 1200) => `https://images.unsplash.com/photo-${P[n]}?auto=format&fit=crop&w=${w}&q=80`;
@@ -284,7 +314,7 @@
         <p class="mt-4 max-w-md text-sm leading-relaxed text-navy/70 md:text-base">${f.desc}</p>
         <ul class="mt-6 grid gap-2 text-sm text-navy/75 sm:grid-cols-2">${f.list.map(t => `<li class="flex items-start gap-2"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold"></i><span>${t}</span></li>`).join('')}</ul>
         <p class="mt-6 flex items-center gap-2 text-sm text-navy/75"><i data-lucide="clock" class="h-4 w-4 text-gold"></i>${f.hours}</p>
-        <a href="index.html#register" class="mt-7 inline-flex items-center gap-2 border-b border-navy pb-1 text-sm transition hover:border-preload hover:text-preload">Plan Your Stay <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+        <a href="${waUrl('facility', f.name)}" target="_blank" rel="noopener" class="mt-7 inline-flex items-center gap-2 border-b border-navy pb-1 text-sm transition hover:border-preload hover:text-preload">Plan Your Stay <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
       </div>
     </li>`;
     $('#fc-list').innerHTML = FAC.map(row).join('');
@@ -345,6 +375,7 @@
       if (v) { lenis.stop(); mTl.timeScale(1).play(); } else { mTl.timeScale(1.4).reverse(); if (ready) lenis.start(); }
     }
     burgers.forEach(b => b.addEventListener('click', () => setMenu(!open)));
+    $$('#mmenu a[data-wa]').forEach(a => a.addEventListener('click', () => setMenu(false)));
     addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
     addEventListener('resize', () => innerWidth >= 1024 && setMenu(false));
     $$('a.jump').forEach(a => a.addEventListener('click', e => {

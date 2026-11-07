@@ -71,6 +71,38 @@
         transition-duration: .01ms !important
       }
     }
+
+    /* WhatsApp floating button */
+    .wa-pulse::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      background: #25D366;
+      opacity: .5;
+      z-index: -1;
+      animation: wapulse 2.4s ease-out infinite
+    }
+
+    @keyframes wapulse {
+      0% {
+        transform: scale(1);
+        opacity: .5
+      }
+
+      80%,
+      100% {
+        transform: scale(1.75);
+        opacity: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .wa-pulse::before {
+        animation: none;
+        display: none
+      }
+    }
   </style>
 </head>
 
@@ -112,10 +144,11 @@
   <div id="topbar" class="fixed inset-x-0 top-0 z-50 text-white">
     <div class="flex h-20 items-center justify-between px-6 lg:px-12">
       <nav class="hidden items-center gap-5 text-[15px] tracking-[.14em] lg:flex" aria-label="Hero navigation">
-        <a class="jump transition hover:text-gilt" href="/rooms.html">Rooms</a><span class="h-4 w-px bg-white/40"></span>
+        <a class="jump transition hover:text-gilt" href="./rooms.html">Rooms</a><span
+          class="h-4 w-px bg-white/40"></span>
         <a class="jump transition hover:text-gilt" href="#facilities">Facilities</a><span
-        class="h-4 w-px bg-white/40"></span>
-        <a class="jump transition hover:text-gilt" href="#promo">Promo</a>
+          class="h-4 w-px bg-white/40"></span>
+        <a class="jump transition hover:text-gilt" href="#gallery">Gallery</a>
       </nav>
       <a href="#home" class="jump logo flex items-center gap-2 font-serif text-[clamp(1.5rem,6vw,1.9rem)] lg:hidden"
         aria-label="NES_inn home"><img src="./img/nesinn_logo.jpeg" class="logo-img" alt="" width="40"
@@ -128,7 +161,7 @@
         <a href="https://www.google.com/maps/" target="_blank" rel="noopener" aria-label="Google Maps"
           class="transition hover:text-gilt"><i data-lucide="navigation" class="h-5 w-5"></i></a>
         <span class="h-4 w-px bg-white/40"></span>
-        <a class="jump text-[15px] tracking-[.14em] transition hover:text-gilt" href="#register">Contact Us</a>
+        <a class="text-[15px] tracking-[.14em] transition hover:text-gilt" href="#" data-wa="contact">Contact Us</a>
       </div>
       <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
         aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
@@ -144,19 +177,20 @@
     <div class="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-6 lg:px-12">
       <a href="#home"
         class="jump logo flex items-center gap-2 font-serif text-[clamp(1.6rem,6.5vw,2.25rem)] text-[#3b2a0a]"
-        aria-label="NES_inn home"><img src="/img/nesinn_logo.jpeg" class="logo-img" alt="" width="50"
+        aria-label="NES_inn home"><img src="./img/nesinn_logo.jpeg" class="logo-img" alt="" width="50"
           height="50">NES_inn</a>
-      <ul class="hidden items-center gap-10 text-[15px] font-medium tracking-wide lg:flex" aria-label="Main navigation">
+      <ul class="hidden items-center gap-7 text-[15px] font-medium tracking-wide lg:flex xl:gap-10"
+        aria-label="Main navigation">
         <li><a class="jump transition hover:text-preload" href="#home">Home</a></li>
-        <li><a class="jump transition hover:text-preload" href="/rooms.html">Rooms</a></li>
+        <li><a class="transition hover:text-preload" href="./rooms.html">Rooms</a></li>
         <li><a class="jump transition hover:text-preload" href="#facilities">Facilities</a></li>
         <li><a class="jump transition hover:text-preload" href="#promo">Promo</a></li>
         <li><a class="jump transition hover:text-preload" href="#gallery">Gallery</a></li>
         <li><a class="jump transition hover:text-preload" href="#reviews">Reviews</a></li>
         <li><a class="jump transition hover:text-preload" href="#location">Location</a></li>
       </ul>
-      <a class="jump hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy hover:text-white lg:inline-block"
-        href="#register">Contact Us</a>
+      <a class="hidden rounded-full bg-preload px-8 py-3 font-medium text-white transition hover:bg-navy hover:text-white lg:inline-block"
+        href="#" data-wa="contact">Contact Us</a>
       <button type="button" class="burger relative flex h-11 w-11 items-center justify-center lg:hidden"
         aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span
           class="relative block h-[14px] w-6"><span
@@ -167,17 +201,25 @@
   </header>
 
   <div id="mmenu"
-    class="invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
+    class="overflow-y-auto invisible fixed inset-0 z-40 flex flex-col justify-between bg-deep px-8 pb-10 pt-28 text-white lg:hidden"
     aria-hidden="true">
     <ul class="flex flex-col">
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#home">Home</a></li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="/rooms.html">Rooms</a></li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#facilities">Facilities</a>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#promo">Promo</a></li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#gallery">Gallery</a></li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl" href="#location">Location</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl sm:text-5xl" href="#home">Home</a>
       </li>
-      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-5xl text-preload" href="#register">Contact
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="./rooms.html">Rooms</a>
+      </li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="#facilities">Facilities</a>
+      </li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="#promo">Promo</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="#gallery">Gallery</a></li>
+      <li class="overflow-hidden"><a class="jump ml block py-1.5 font-serif text-4xl sm:text-5xl"
+          href="#location">Location</a></li>
+      <li class="overflow-hidden"><a class="ml block py-1.5 font-serif text-4xl sm:text-5xl text-preload" href="#"
+          data-wa="contact">Contact
           Us</a></li>
     </ul>
     <div class="mf text-sm text-white/65">
@@ -249,6 +291,9 @@
               target="_blank" rel="noopener"
               class="inline-flex items-center gap-2 rounded-full bg-preload px-6 py-3 text-white transition hover:bg-navy">Open
               in Google Maps <i data-lucide="arrow-up-right" class="h-4 w-4"></i></a>
+            <a href="https://waze.com/ul?q=Raha%20Sulawesi%20Tenggara&navigate=yes" target="_blank" rel="noopener"
+              class="inline-flex items-center gap-2 rounded-full border border-navy/30 px-6 py-3 transition hover:border-preload hover:text-preload">Open
+              in Waze <i data-lucide="navigation" class="h-4 w-4"></i></a>
           </div>
         </div>
 
@@ -320,7 +365,7 @@
         </div>
 
         <div data-r class="mt-14 text-center">
-          <a href="promo.html"
+          <a href="./promo.html"
             class="inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-sm text-white transition hover:bg-navy">View
             All Promos <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
         </div>
@@ -345,7 +390,7 @@
           <div class="ph mt-6 aspect-[16/9] overflow-hidden"><img id="p-img" alt="" class="h-full w-full object-cover">
           </div>
         </div>
-        <a href="facilities.html"
+        <a href="./facilities.html"
           class="mt-8 inline-flex items-center gap-2 self-start border-b border-navy pb-1 text-sm transition hover:border-preload hover:text-preload">Explore
           All Facilities <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
       </div>
@@ -458,62 +503,12 @@
               class="underline underline-offset-4 transition hover:text-preload">hello@nesinn.com</a>,
             and our team will be happy to help.
           </p>
-          <a href="#register"
-            class="jump mt-2 inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-sm text-white transition hover:bg-navy">Contact
+          <a href="#" data-wa="contact"
+            class="mt-2 inline-flex items-center gap-2 rounded-full bg-preload px-8 py-3 text-sm text-white transition hover:bg-navy">Contact
             Us <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
         </div>
       </div>
     </section>
-
-    <!-- REGISTER -->
-    <!-- <section id="register" class="grid lg:grid-cols-2">
-      <div class="ph h-[360px] overflow-hidden lg:h-auto"><img data-img="9" alt="Tropical landscape"
-          class="h-full w-full object-cover" loading="lazy"></div>
-      <div class="px-6 py-16 md:px-16 lg:py-24">
-        <div class="mx-auto max-w-md">
-          <h2 class="font-serif text-4xl md:text-5xl">Take the First Step</h2>
-          <p class="mt-3 text-sm leading-relaxed text-navy/70">Become a member of NES_inn Club and take the first step
-            towards a life filled with purpose, wellness, and connection.</p>
-          <form id="rform" class="mt-8 space-y-5" novalidate>
-            <div><label for="r-name" class="text-xs text-navy/70">Full Name</label><input id="r-name" name="name"
-                required autocomplete="name" placeholder="Enter your name"
-                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
-            </div>
-            <div><label for="r-email" class="text-xs text-navy/70">Email Address</label><input id="r-email" name="email"
-                type="email" required autocomplete="email" placeholder="Enter your email address"
-                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
-            </div>
-            <div><label for="r-phone" class="text-xs text-navy/70">Phone Number</label>
-              <div class="mt-1 flex gap-3"><select name="cc" aria-label="Country code"
-                  class="border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
-                  <option>+1</option>
-                  <option>+60</option>
-                  <option selected>+62</option>
-                </select>
-                <input id="r-phone" name="phone" type="tel" required autocomplete="tel-national"
-                  placeholder="Enter your phone number"
-                  class="w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
-              </div>
-            </div>
-            <div><label for="r-country" class="text-xs text-navy/70">Country</label><select id="r-country"
-                name="country"
-                class="mt-1 w-full border-b border-navy/30 bg-transparent py-2 text-sm outline-none focus:border-gold">
-                <option>United States</option>
-                <option>Malaysia</option>
-                <option selected>Indonesia</option>
-                <option>Singapore</option>
-              </select></div>
-            <label class="flex items-start gap-3 text-sm"><input type="checkbox" name="terms" required
-                class="mt-1 h-4 w-4 accent-[#d31c5e]"><span>I agree to the <span class="text-preload">Policies and
-                  Terms</span></span></label>
-            <button type="submit"
-              class="w-full rounded-full bg-preload py-3.5 text-sm text-white transition hover:bg-navy">Register
-              Now</button>
-            <p id="rmsg" class="min-h-5 text-sm" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section> -->
   </main>
 
   <footer class="bg-gradient-to-b from-preload/90 to-black/90 px-6 pb-8 pt-20 text-white">
@@ -530,8 +525,8 @@
               class="transition hover:text-preload">Instagram</a></li>
           <li><a href="https://www.facebook.com/" target="_blank" rel="noopener"
               class="transition hover:text-preload">Facebook</a></li>
-          <li><a href="https://www.google.com/maps/" target="_blank" rel="noopener"
-              class="transition hover:text-preload">Google Maps</a>
+          <li><a href="https://www.waze.com/" target="_blank" rel="noopener"
+              class="transition hover:text-preload">Waze</a>
           </li>
           <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener"
               class="transition hover:text-preload">Linkedin</a></li>
@@ -552,14 +547,104 @@
   </footer>
 
   <button id="totop" type="button"
-    class="pointer-events-none fixed bottom-6 right-6 z-30 flex flex-col items-center gap-2 bg-white/90 px-3 py-3 text-navy opacity-0 shadow-lg backdrop-blur"
+    class="pointer-events-none fixed bottom-24 right-6 z-30 flex flex-col items-center gap-2 bg-white/90 px-3 py-3 text-navy opacity-0 shadow-lg backdrop-blur"
     aria-label="Back to top"><i data-lucide="chevron-up" class="h-4 w-4"></i><span
       class="block h-10 w-px bg-navy/20"><span id="totop-p" class="block w-px origin-top bg-navy"
         style="height:100%;transform:scaleY(0)"></span></span></button>
 
+  <!-- WhatsApp floating button -->
+  <div id="wa" class="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+    <div id="wa-panel" role="dialog" aria-label="Chat via WhatsApp" aria-hidden="true" data-lenis-prevent
+      class="invisible max-h-[calc(100svh-11.5rem)] w-[min(88vw,340px)] origin-bottom-right overflow-y-auto overscroll-contain rounded-2xl bg-white text-navy shadow-2xl ring-1 ring-black/5">
+      <div class="sticky top-0 z-10 flex items-center gap-3 bg-[#075E54] px-5 py-4 text-white">
+        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/15"><svg
+            viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg></span>
+        <div>
+          <p class="font-medium leading-tight">NES_inn Hotel</p>
+          <p class="mt-0.5 text-xs text-white/75">Chat langsung via WhatsApp</p>
+        </div>
+        <button id="wa-close" type="button" aria-label="Tutup chat"
+          class="ml-auto flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-white/15"><i
+            data-lucide="x" class="h-5 w-5"></i></button>
+      </div>
+      <div class="bg-[#ECE5DD] p-4">
+        <p class="wa-o max-w-[88%] rounded-xl rounded-tl-none bg-white px-4 py-3 text-sm leading-relaxed shadow-sm">
+          Halo! 👋 Selamat datang di NES_inn Hotel. Ada yang bisa kami bantu?</p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li class="wa-o"><a data-wa="book"
+              class="flex items-center justify-between gap-3 rounded-full border border-[#25D366]/50 bg-white px-4 py-2.5 transition hover:bg-[#25D366] hover:text-white"><span
+                class="flex items-center gap-2.5"><i data-lucide="bed-double" class="h-4 w-4"></i>Reservasi
+                kamar</span><i data-lucide="chevron-right" class="h-4 w-4 opacity-60"></i></a></li>
+          <li class="wa-o"><a data-wa="promo"
+              class="flex items-center justify-between gap-3 rounded-full border border-[#25D366]/50 bg-white px-4 py-2.5 transition hover:bg-[#25D366] hover:text-white"><span
+                class="flex items-center gap-2.5"><i data-lucide="badge-percent" class="h-4 w-4"></i>Info promo &amp;
+                paket</span><i data-lucide="chevron-right" class="h-4 w-4 opacity-60"></i></a></li>
+          <li class="wa-o"><a data-wa="facility"
+              class="flex items-center justify-between gap-3 rounded-full border border-[#25D366]/50 bg-white px-4 py-2.5 transition hover:bg-[#25D366] hover:text-white"><span
+                class="flex items-center gap-2.5"><i data-lucide="waves" class="h-4 w-4"></i>Info fasilitas</span><i
+                data-lucide="chevron-right" class="h-4 w-4 opacity-60"></i></a></li>
+          <li class="wa-o"><a data-wa="location"
+              class="flex items-center justify-between gap-3 rounded-full border border-[#25D366]/50 bg-white px-4 py-2.5 transition hover:bg-[#25D366] hover:text-white"><span
+                class="flex items-center gap-2.5"><i data-lucide="map-pin" class="h-4 w-4"></i>Lokasi &amp; petunjuk
+                arah</span><i data-lucide="chevron-right" class="h-4 w-4 opacity-60"></i></a></li>
+        </ul>
+      </div>
+      <div class="p-4">
+        <a data-wa="contact"
+          class="flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#1ebe5d]"><svg
+            viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+          </svg>Mulai chat di WhatsApp</a>
+        <p class="mt-3 text-center text-[11px] text-navy/55">Pesan akan terisi otomatis. Anda tinggal melengkapi
+          datanya.</p>
+      </div>
+    </div>
+    <div class="relative">
+      <span id="wa-hint"
+        class="invisible absolute right-[4.5rem] top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-white px-4 py-2 text-sm text-navy shadow-lg"
+        aria-hidden="true">Chat dengan kami 👋</span>
+      <button id="wa-btn" type="button" aria-expanded="false" aria-controls="wa-panel" aria-label="Chat via WhatsApp"
+        class="wa-pulse relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition hover:bg-[#1ebe5d]">
+        <svg id="wa-ic" viewBox="0 0 24 24" class="h-7 w-7" fill="currentColor" aria-hidden="true">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+        <span id="wa-ix" class="hidden" aria-hidden="true"><i data-lucide="x" class="h-6 w-6"></i></span>
+      </button>
+    </div>
+  </div>
+
   <script>
     gsap.registerPlugin(ScrollTrigger);
     const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+    /* ---------- WhatsApp direct (0852-4249-0262) ---------- */
+    const WA_NUM = '6285242490262';
+    const WA_FORMS = {
+      contact: { intro: 'Saya ingin bertanya mengenai informasi hotel.', label: 'Topik', fields: ['Nama lengkap', 'Pertanyaan'] },
+      book: { intro: 'Saya ingin melakukan reservasi kamar.', label: 'Kamar / paket', fields: ['Nama lengkap', 'Tipe kamar', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu', 'Permintaan khusus'] },
+      room: { intro: 'Saya ingin memesan kamar berikut.', label: 'Tipe kamar', fields: ['Nama lengkap', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu', 'Permintaan khusus'] },
+      package: { intro: 'Saya tertarik dengan paket menginap berikut.', label: 'Paket', fields: ['Nama lengkap', 'Tanggal check-in', 'Jumlah tamu', 'Permintaan khusus'] },
+      event: { intro: 'Saya ingin melakukan reservasi untuk acara berikut.', label: 'Acara', fields: ['Nama lengkap', 'Jumlah tamu', 'Catatan'] },
+      discount: { intro: 'Saya ingin menggunakan promo berikut.', label: 'Promo', fields: ['Nama lengkap', 'Tipe kamar', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu'] },
+      facility: { intro: 'Saya ingin menginap dan mengetahui lebih lanjut tentang fasilitas hotel.', label: 'Fasilitas', fields: ['Nama lengkap', 'Tanggal check-in', 'Tanggal check-out', 'Jumlah tamu'] },
+      promo: { intro: 'Saya ingin mengetahui promo dan paket menginap yang tersedia.', label: 'Promo', fields: ['Nama lengkap', 'Rencana tanggal menginap', 'Jumlah tamu'] },
+      location: { intro: 'Saya ingin menanyakan lokasi dan petunjuk arah menuju hotel.', label: 'Topik', fields: ['Nama lengkap', 'Berangkat dari'] }
+    };
+    function waMsg(kind = 'contact', item = '', code = '') {
+      const f = WA_FORMS[kind] || WA_FORMS.contact;
+      const l = ['Halo NES_inn Hotel 👋', f.intro, ''];
+      if (item) l.push(`• ${f.label}: ${item}`);
+      if (code) l.push(`• Kode promo: ${code}`);
+      f.fields.forEach(x => l.push(`• ${x}: `));
+      l.push('', 'Terima kasih.');
+      return l.join('\n');
+    }
+    const waUrl = (kind, item, code) => `https://wa.me/${WA_NUM}?text=${encodeURIComponent(waMsg(kind, item, code))}`;
+    $$('a[data-wa]').forEach(a => { a.href = waUrl(a.dataset.wa, a.dataset.item, a.dataset.code); a.target = '_blank'; a.rel = 'noopener'; });
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const P = { 1: '1540541338287-41700207dee6', 2: '1520250497591-112f2f40a3f4', 3: '1544161515-4ab6ce6db874', 4: '1534438327276-14e5300c3a48', 5: '1573843981267-be1999ff37cd', 6: '1507525428034-b723cf961d3e', 7: '1414235077428-338989a2e8c0', 8: '1551882547-ff40c63fe5fa', 9: '1537996194471-e657df975ab4', 10: '1602002418082-a4443e081dd1', 11: '1582719508461-905c673771fd', 12: '1566073771259-6a8506099945', 13: '1571896349842-33c89424de2d', 14: '1631049307264-da0ec9d70304', 15: '1584622650111-993a426fbf0a', 16: '1570077188670-e3a8d69ac5ff', 17: '1590490360182-c33d57733427' };
     const img = (n, w = 1200) => `https://images.unsplash.com/photo-${P[n]}?auto=format&fit=crop&w=${w}&q=80`;
@@ -590,7 +675,7 @@
         <div class="mt-auto pt-6">
           <div class="flex items-baseline gap-3 border-t border-navy/10 pt-5"><span class="font-serif text-3xl text-preload">${p[3]}</span><span class="text-sm text-navy/45 line-through">${p[4]}</span></div>
           <p class="mt-1 text-xs text-navy/55">Per package, taxes included</p>
-          <a href="#register" class="jump mt-5 block rounded-full bg-preload py-3 text-center text-sm text-white transition hover:bg-navy">Book This Package</a>
+          <a href="${waUrl('package', p[1])}" target="_blank" rel="noopener" class="mt-5 block rounded-full bg-preload py-3 text-center text-sm text-white transition hover:bg-navy">Book This Package</a>
         </div>
       </div>
     </article>`).join('');
@@ -617,7 +702,7 @@
           <li class="flex items-center gap-2"><i data-lucide="map-pin" class="h-4 w-4 shrink-0 text-gold"></i>${e[7]}</li>
           <li class="flex items-center gap-2"><i data-lucide="ticket" class="h-4 w-4 shrink-0 text-gold"></i>${e[8]}</li>
         </ul>
-        <a href="#register" class="jump mt-auto inline-flex items-center gap-2 self-start border-b border-navy pb-1 pt-6 text-sm transition hover:border-preload hover:text-preload">Reserve a Spot <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
+        <a href="${waUrl('event', e[4])}" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 self-start border-b border-navy pb-1 pt-6 text-sm transition hover:border-preload hover:text-preload">Reserve a Spot <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
       </div>
     </article>`).join('');
 
@@ -877,11 +962,13 @@
       if (v === open) return;
       open = v;
       document.body.classList.toggle('mo', v);
+      $('#wa').style.visibility = v ? 'hidden' : '';
       burgers.forEach(b => { b.classList.toggle('menu-open', v); b.setAttribute('aria-expanded', v); b.setAttribute('aria-label', v ? 'Close menu' : 'Open menu'); });
       menu.setAttribute('aria-hidden', !v);
       if (v) { lenis.stop(); mTl.timeScale(1).play(); } else { mTl.timeScale(1.4).reverse(); if (ready) lenis.start(); }
     }
     burgers.forEach(b => b.addEventListener('click', () => setMenu(!open)));
+    $$('#mmenu a[data-wa]').forEach(a => a.addEventListener('click', () => setMenu(false)));
     addEventListener('keydown', e => e.key === 'Escape' && setMenu(false));
     addEventListener('resize', () => innerWidth >= 1024 && setMenu(false));
     $$('a.jump').forEach(a => a.addEventListener('click', e => {
@@ -953,14 +1040,6 @@
     $('#fg-next').onclick = () => fgGo(fi + 1);
     $('#fg-skip').onclick = () => lenis.scrollTo(fgST.end + 2, { duration: 1.4 });
 
-    /* ---------- Register form ---------- */
-    // $('#rform').addEventListener('submit', e => {
-    //   e.preventDefault();
-    //   const f = e.target, m = $('#rmsg');
-    //   if (!f.checkValidity()) { f.reportValidity(); m.textContent = 'Complete all fields and accept the terms to register.'; m.className = 'min-h-5 text-sm text-red-700'; return; }
-    //   m.textContent = 'Thank you, ' + f.name.value.trim() + '. Your registration has been received.'; m.className = 'min-h-5 text-sm text-emerald-800'; f.reset();
-    // });
-
     /* ---------- Scroll effects ---------- */
     // Headings: words rise out of a mask
     $$('main h2:not(#fg-title)').forEach(el => {
@@ -992,9 +1071,46 @@
     });
     $('#totop').onclick = () => lenis.scrollTo(0, { duration: 1.6 });
 
+    /* ---------- WhatsApp floating button ---------- */
+    const waBtn = $('#wa-btn'), waPanel = $('#wa-panel'), waHint = $('#wa-hint');
+    let waOpen = false, waHintT = null;
+    gsap.set(waBtn, { scale: 0 });
+    function setWa(v) {
+      if (v === waOpen) return;
+      waOpen = v;
+      waBtn.setAttribute('aria-expanded', v);
+      waPanel.setAttribute('aria-hidden', !v);
+      $('#wa-ic').classList.toggle('hidden', v);
+      $('#wa-ix').classList.toggle('hidden', !v);
+      clearTimeout(waHintT); gsap.to(waHint, { opacity: 0, duration: .2, onComplete: () => waHint.classList.add('invisible') });
+      if (v) {
+        gsap.set(waPanel, { visibility: 'visible' });
+        gsap.fromTo(waPanel, { opacity: 0, y: 18, scale: .92 }, { opacity: 1, y: 0, scale: 1, duration: reduce ? .01 : .45, ease: 'back.out(1.5)' });
+        if (!reduce) gsap.from('#wa-panel .wa-o', { opacity: 0, y: 12, duration: .5, stagger: .07, delay: .15, ease: 'power2.out' });
+      } else {
+        gsap.to(waPanel, { opacity: 0, y: 12, scale: .95, duration: reduce ? .01 : .25, ease: 'power2.in', onComplete: () => gsap.set(waPanel, { visibility: 'hidden' }) });
+      }
+    }
+    waBtn.addEventListener('click', () => setWa(!waOpen));
+    $('#wa-close').addEventListener('click', () => { setWa(false); waBtn.focus(); });
+    document.addEventListener('click', e => { if (waOpen && !e.target.closest('#wa')) setWa(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && waOpen) { setWa(false); waBtn.focus(); } });
+    $$('#wa-panel a[data-wa]').forEach(a => a.addEventListener('click', () => setTimeout(() => setWa(false), 150)));
+    waBtn.addEventListener('mouseenter', () => !reduce && !waOpen && gsap.to(waBtn, { scale: 1.08, duration: .3, ease: 'power2.out' }));
+    waBtn.addEventListener('mouseleave', () => gsap.to(waBtn, { scale: 1, duration: .3, ease: 'power2.out' }));
+    function waIntro() {
+      gsap.to(waBtn, { scale: 1, duration: reduce ? .01 : .8, ease: 'back.out(2.2)', delay: .3 });
+      waHintT = setTimeout(() => {
+        if (waOpen) return;
+        waHint.classList.remove('invisible');
+        gsap.fromTo(waHint, { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: .5, ease: 'power3.out' });
+        waHintT = setTimeout(() => gsap.to(waHint, { opacity: 0, x: 14, duration: .4, onComplete: () => waHint.classList.add('invisible') }), 6000);
+      }, 3500);
+    }
+
     /* ---------- Preloader + intro ---------- */
     addEventListener('load', () => {
-      gsap.timeline({ onComplete: () => { $('#preloader').remove(); ready = true; if (!open) lenis.start(); ScrollTrigger.refresh(); } })
+      gsap.timeline({ onComplete: () => { $('#preloader').remove(); ready = true; if (!open) lenis.start(); ScrollTrigger.refresh(); waIntro(); } })
         .from('#pl-line', { scaleX: 0, duration: reduce ? .01 : 1.1, ease: 'power2.inOut' })
         .to('#preloader', { yPercent: -100, duration: reduce ? .01 : .9, ease: 'power4.inOut' })
         .add(() => hGo(0, true), '-=.5')
